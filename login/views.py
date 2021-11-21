@@ -97,6 +97,15 @@ def movie(request):
         movieAdding = models.Movie.objects.get(id=movieId)
         user.loveMovies.add(movieAdding)
         return redirect("/movie?id=" + request.GET.get("id"))
+
+    elif request.GET.get("type") == "deLoveMovie":
+        userName = request.session.get("userName")
+        movieId = request.GET.get("id")
+        user = models.WebUser.objects.get(username=userName)
+        movieAdding = models.Movie.objects.get(id=movieId)
+        user.loveMovies.remove(movieAdding)
+        return redirect("/movie?id=" + request.GET.get("id"))
+
     movieId = request.GET.get("id")
     m = models.Movie.objects.get(id=movieId)
     return render(request, 'login/movie.html', {"result": m})
@@ -121,6 +130,15 @@ def actor(request):
         actorAdding = models.Actor.objects.get(id=actorId)
         user.loveActors.add(actorAdding)
         return redirect("/actor?id=" + request.GET.get("id"))
+
+    elif request.GET.get("type") == "deLoveActor":
+        userName = request.session.get("userName")
+        actorId = request.GET.get("id")
+        user = models.WebUser.objects.get(username=userName)
+        actorAdding = models.Actor.objects.get(id=actorId)
+        user.loveActors.remove(actorAdding)
+        return redirect("/actor?id=" + request.GET.get("id"))
+
     actorId = request.GET.get("id")
     m = models.Actor.objects.get(id=actorId)
     return render(request, 'login/actor.html', {"result": m})
@@ -143,6 +161,14 @@ def director(request):
         directorAdding = models.Director.objects.get(id=directorId)
         user.loveDirectors.add(directorAdding)
         return redirect("/director?id=" + request.GET.get("id"))
+    elif request.GET.get("type") == "deLoveDirector":
+        userName = request.session.get("userName")
+        directorId = request.GET.get("id")
+        user = models.WebUser.objects.get(username=userName)
+        directorAdding = models.Director.objects.get(id=directorId)
+        user.loveDirectors.remove(directorAdding)
+        return redirect("/director?id=" + request.GET.get("id"))
+
     directorId = request.GET.get("id")
     m = models.Director.objects.get(id=directorId)
     return render(request, 'login/director.html', {"result": m})
