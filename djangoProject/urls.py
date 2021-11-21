@@ -23,4 +23,13 @@ urlpatterns = [
     path('login/', views.login),
     path('register/', views.register),
     path('logout/', views.logout),
+    path('movieList/', views.movieList),
+    path('actorList/', views.actorList),
+    path('directorList/', views.directorList),
+    path('companyList/', views.companyList),
+    path('movie/', views.movie),
+    path('actor/', views.actor),
+    path('director/', views.director),
+    path('company/', views.company),
+    path('subscribe/', views.subscribe),
 ]

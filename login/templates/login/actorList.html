@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<a href="/index/" class="text-success "><ins>返回</ins></a>
+
+<form class="form-login" action="/actorList/" method="post">
+    {% csrf_token %}
+    <input type="text" name="actorName"/>
+    <input type="submit" value="查询"/>
+</form>
+
+<table border="1">
+    <thead>
+    <td>ID</td>
+    <td>用户名</td>
+    <td>密码</td>
+    {% for line in result %}
+        <tr>
+            <td>{{ line.actorName }}</td>
+            <td>{{ line.majorActedMovies }}</td>
+            <td>{{ line.2 }}</td>
+        </tr>
+    {% endfor %}
+    </thead>
+</table>
+</body>
+</html>

@@ -4,7 +4,42 @@
     <meta charset="UTF-8">
     <title>首页</title>
 </head>
+
 <body>
-<h1>这仅仅是一个主页模拟！请根据实际情况接入正确的主页！</h1>
+
+<div>
+    <a>欢迎 {{ request.session.userName }} !</a>
+    <a href="/logout/" class="text-success"><ins>注销</ins></a>
+</div>
+
+<div>
+    <a href="/movieList/" class="text-success "><ins>电影</ins></a>
+
+    <a href="/actorList/" class="text-success "><ins>演员</ins></a>
+
+    <a href="/directorList/" class="text-success "><ins>导演</ins></a>
+
+    <a href="/companyList/" class="text-success "><ins>公司</ins></a>
+</div>
+
+<div>
+    <h1>喜欢的电影</h1>
+    <table>
+        <thead>
+            <td>ID</td>
+            <td>用户名</td>
+            <td>密码</td>
+            {% for line in loveMovies %}
+                <tr>
+                    <td>{{ line.movieName }}</td>
+                    <td>{{ line.movieDate }}</td>
+                    <td>{{ line.2 }}</td>
+                </tr>
+            {% endfor %}
+        </thead>
+    </table>
+</div>
+
+
 </body>
 </html>
