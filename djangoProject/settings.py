@@ -77,9 +77,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'homework',
         'USER': 'root',
-        'PASSWORD': 'linxin'
+        # 'PASSWORD': 'linxin'
+        'PASSWORD': 'liu5813440'
     }
 }
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
