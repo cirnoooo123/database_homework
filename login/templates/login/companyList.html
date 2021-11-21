@@ -20,8 +20,10 @@
     <td>密码</td>
     {% for line in result %}
         <tr>
-            <td>{{ line.companyName }}</td>
-            <td>{{ line.movie }}</td>
+            <td>
+                <a href="/company/?id={{ line.id }}"><ins>{{ line.companyName }}</ins></a>
+            </td>
+            <td>{{ line.1 }}</td>
             <td>{{ line.2 }}</td>
         </tr>
     {% endfor %}

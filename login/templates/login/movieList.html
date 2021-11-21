@@ -21,9 +21,9 @@
     {% for line in result %}
         <tr>
             <td>
-                <a href="/movie/?id={{ line.id }}"><ins>{{ line.id }}</ins></a>
+                <a href="/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
             </td>
-            <td>{{ line.movie }}</td>
+            <td>{{ line.1 }}</td>
             <td>{{ line.2 }}</td>
         </tr>
     {% endfor %}

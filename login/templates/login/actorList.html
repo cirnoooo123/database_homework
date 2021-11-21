@@ -20,8 +20,10 @@
     <td>密码</td>
     {% for line in result %}
         <tr>
-            <td>{{ line.actorName }}</td>
-            <td>{{ line.majorActedMovies }}</td>
+            <td>
+                <a href="/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
+            </td>
+            <td>{{ line.1 }}</td>
             <td>{{ line.2 }}</td>
         </tr>
     {% endfor %}

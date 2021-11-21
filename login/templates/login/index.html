@@ -26,8 +26,8 @@
     <h1>喜欢的电影</h1>
     <table>
         <thead>
-            <td>ID</td>
-            <td>用户名</td>
+            <td>电影名</td>
+            <td>上映日期</td>
             <td>密码</td>
             {% for line in loveMovies %}
                 <tr>
@@ -40,6 +40,41 @@
     </table>
 </div>
 
+<div>
+    <h1>喜欢的演员</h1>
+    <table>
+        <thead>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>密码</td>
+            {% for line in loveActors %}
+                <tr>
+                    <td>{{ line.actorName }}</td>
+                    <td>{{ line.actorAge }}</td>
+                    <td>{{ line.2 }}</td>
+                </tr>
+            {% endfor %}
+        </thead>
+    </table>
+</div>
+
+<div>
+    <h1>喜欢的导演</h1>
+    <table>
+        <thead>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>密码</td>
+            {% for line in loveDirectors %}
+                <tr>
+                    <td>{{ line.directorName }}</td>
+                    <td>{{ line.directorAge }}</td>
+                    <td>{{ line.2 }}</td>
+                </tr>
+            {% endfor %}
+        </thead>
+    </table>
+</div>
 
 </body>
 </html>

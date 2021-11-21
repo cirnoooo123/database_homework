@@ -72,10 +72,11 @@ def index(request):
     user = models.WebUser.objects.get(username=request.session.get("userName"))
     result = {}
     movies = user.loveMovies.all().values()
-    for var in movies:
-        print(var)
+    actors = user.loveActors.all().values()
+    directors = user.loveDirectors.all().values()
     result["loveMovies"] = movies
-
+    result["loveActors"] = actors
+    result["loveDirectors"] = directors
     return render(request, 'login/index.html', result)
 
 
@@ -113,7 +114,16 @@ def actorList(request):
 
 
 def actor(request):
-    return None
+    if request.GET.get("type") == "loveActor":
+        userName = request.session.get("userName")
+        actorId = request.GET.get("id")
+        user = models.WebUser.objects.get(username=userName)
+        actorAdding = models.Actor.objects.get(id=actorId)
+        user.loveActors.add(actorAdding)
+        return redirect("/actor?id=" + request.GET.get("id"))
+    actorId = request.GET.get("id")
+    m = models.Actor.objects.get(id=actorId)
+    return render(request, 'login/actor.html', {"result": m})
 
 
 def directorList(request):
@@ -126,7 +136,16 @@ def directorList(request):
 
 
 def director(request):
-    return None
+    if request.GET.get("type") == "loveDirector":
+        userName = request.session.get("userName")
+        directorId = request.GET.get("id")
+        user = models.WebUser.objects.get(username=userName)
+        directorAdding = models.Director.objects.get(id=directorId)
+        user.loveDirectors.add(directorAdding)
+        return redirect("/director?id=" + request.GET.get("id"))
+    directorId = request.GET.get("id")
+    m = models.Director.objects.get(id=directorId)
+    return render(request, 'login/director.html', {"result": m})
 
 
 def companyList(request):
@@ -139,10 +158,6 @@ def companyList(request):
 
 
 def company(request):
-    return None
-
-
-def subscribe(request):
-    if request.GET.get("type") == "loveMovie":
-        return render(request, 'login/movie.html')
-    return None
+    companyId = request.GET.get("id")
+    m = models.Company.objects.get(id=companyId)
+    return render(request, 'login/company.html', {"result": m})
