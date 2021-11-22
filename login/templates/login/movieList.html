@@ -6,9 +6,9 @@
     <title>电影</title>
 </head>
 <body>
-<a href="/index/" class="text-success "><ins>返回</ins></a>
+<a href="/login/" class="text-success "><ins>返回</ins></a>
 
-<form class="form-login" action="/movieList/" method="post">
+<form class="form-login" action="" method="post">
     {% csrf_token %}
     <input type="text" name="movieName"/>
     <input type="submit" value="查询"/>
@@ -22,7 +22,7 @@
     {% for line in result %}
         <tr>
             <td>
-                <a href="/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
+                <a href="/login/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
             </td>
             <td>{{ line.1 }}</td>
             <td>{{ line.2 }}</td>

@@ -6,10 +6,10 @@
     <title>Title</title>
 </head>
 <body>
-<a href="/index/" class="text-success "><ins>返回</ins></a>
+<a href="/login/" class="text-success "><ins>返回</ins></a>
 <h1>{{ result.actorName }}</h1>
-<a href="/actor/?type=loveActor&id={{ result.id }}"><ins>订阅</ins></a>
-<a href="/actor/?type=deLoveActor&id={{ result.id }}"><ins>退订</ins></a>
+<a href="/login/actor/?type=loveActor&id={{ result.id }}"><ins>订阅</ins></a>
+<a href="/login/actor/?type=deLoveActor&id={{ result.id }}"><ins>退订</ins></a>
 <p><img src="{% static result.actorPhoto %}" alt="这是张少龙"></p>
 </body>
 </html>

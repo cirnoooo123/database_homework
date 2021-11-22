@@ -14,7 +14,7 @@ def queryset2list(queryset):
 def login(request):
     if request.method == 'POST':
         if request.session.get('isLogin', None):
-            return redirect('/index/')
+            return redirect('/login/')
         login_form = forms.UserForm(request.POST)
         message = '请检查填写的内容！'
         if login_form.is_valid():
@@ -28,7 +28,7 @@ def login(request):
             if user.upwd == password:
                 request.session['isLogin'] = True
                 request.session['userName'] = username
-                return redirect('/index/')
+                return redirect('/login/')
             else:
                 message = '密码不正确！'
                 return render(request, 'login/login.html', locals())
@@ -63,9 +63,9 @@ def register(request):
 
 def logout(request):
     if not request.session.get('isLogin', None):
-        return redirect("/login/")
+        return redirect("/login/login")
     request.session.flush()
-    return redirect("/login/")
+    return redirect("/login/login")
 
 
 def index(request):
@@ -96,7 +96,7 @@ def movie(request):
         user = models.WebUser.objects.get(username=userName)
         movieAdding = models.Movie.objects.get(id=movieId)
         user.loveMovies.add(movieAdding)
-        return redirect("/movie?id=" + request.GET.get("id"))
+        return redirect("/login/movie?id=" + request.GET.get("id"))
 
     elif request.GET.get("type") == "deLoveMovie":
         userName = request.session.get("userName")
@@ -104,7 +104,7 @@ def movie(request):
         user = models.WebUser.objects.get(username=userName)
         movieAdding = models.Movie.objects.get(id=movieId)
         user.loveMovies.remove(movieAdding)
-        return redirect("/movie?id=" + request.GET.get("id"))
+        return redirect("/login/movie?id=" + request.GET.get("id"))
 
     movieId = request.GET.get("id")
     m = models.Movie.objects.get(id=movieId)
@@ -129,7 +129,7 @@ def actor(request):
         user = models.WebUser.objects.get(username=userName)
         actorAdding = models.Actor.objects.get(id=actorId)
         user.loveActors.add(actorAdding)
-        return redirect("/actor?id=" + request.GET.get("id"))
+        return redirect("/login/actor?id=" + request.GET.get("id"))
 
     elif request.GET.get("type") == "deLoveActor":
         userName = request.session.get("userName")
@@ -137,7 +137,7 @@ def actor(request):
         user = models.WebUser.objects.get(username=userName)
         actorAdding = models.Actor.objects.get(id=actorId)
         user.loveActors.remove(actorAdding)
-        return redirect("/actor?id=" + request.GET.get("id"))
+        return redirect("/login/actor?id=" + request.GET.get("id"))
 
     actorId = request.GET.get("id")
     m = models.Actor.objects.get(id=actorId)
@@ -160,14 +160,14 @@ def director(request):
         user = models.WebUser.objects.get(username=userName)
         directorAdding = models.Director.objects.get(id=directorId)
         user.loveDirectors.add(directorAdding)
-        return redirect("/director?id=" + request.GET.get("id"))
+        return redirect("/login/director?id=" + request.GET.get("id"))
     elif request.GET.get("type") == "deLoveDirector":
         userName = request.session.get("userName")
         directorId = request.GET.get("id")
         user = models.WebUser.objects.get(username=userName)
         directorAdding = models.Director.objects.get(id=directorId)
         user.loveDirectors.remove(directorAdding)
-        return redirect("/director?id=" + request.GET.get("id"))
+        return redirect("/login/director?id=" + request.GET.get("id"))
 
     directorId = request.GET.get("id")
     m = models.Director.objects.get(id=directorId)
