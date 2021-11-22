@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,5 +10,6 @@
 <h1>{{ result.actorName }}</h1>
 <a href="/actor/?type=loveActor&id={{ result.id }}"><ins>订阅</ins></a>
 <a href="/actor/?type=deLoveActor&id={{ result.id }}"><ins>退订</ins></a>
+<p><img src="{% static result.actorPhoto %}" alt="这是张少龙"></p>
 </body>
 </html>
