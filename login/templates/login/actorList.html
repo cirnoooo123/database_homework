@@ -6,9 +6,9 @@
   <title>Title</title>
 </head>
 <body>
-<a href="/index/" class="text-success "><ins>返回</ins></a>
+<a href="/login/" class="text-success "><ins>返回</ins></a>
 
-<form class="form-login" action="/actorList/" method="post">
+<form class="form-login" action="" method="post">
     {% csrf_token %}
     <input type="text" name="actorName"/>
     <input type="submit" value="查询"/>
@@ -22,7 +22,7 @@
     {% for line in result %}
         <tr>
             <td>
-                <a href="/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
+                <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
             </td>
             <td>{{ line.1 }}</td>
             <td>{{ line.2 }}</td>
