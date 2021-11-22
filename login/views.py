@@ -106,9 +106,18 @@ def movie(request):
         user.loveMovies.remove(movieAdding)
         return redirect("/login/movie?id=" + request.GET.get("id"))
 
+    elif request.method == 'POST':
+        reviewGrade = int(request.POST.get("reviewGrade"))
+        reviewString = request.POST.get("reviewString")
+        movieId = request.GET.get("id")
+        newReview = models.Review(reviewGrade=reviewGrade, reviewString=reviewString,
+                                  reviewedAuthor_id=request.session.get("userName"), reviewedMovie_id=movieId)
+        newReview.save()
+
     movieId = request.GET.get("id")
     m = models.Movie.objects.get(id=movieId)
-    return render(request, 'login/movie.html', {"result": m})
+    reviews = m.review_set.all().values()
+    return render(request, 'login/movie.html', {"result": m, "reviews": reviews})
 
 
 def actorList(request):

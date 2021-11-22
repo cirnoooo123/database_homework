@@ -11,4 +11,32 @@
 <a href="/login/movie/?type=loveMovie&id={{ result.id }}"><ins>订阅</ins></a>
 <a href="/login/movie/?type=deLoveMovie&id={{ result.id }}"><ins>退订</ins></a>
 </body>
+
+
+<div>
+    <form class="form-login" action="" method="post">
+        {% csrf_token %}
+        <label for="reviewGrade">请打分：</label>
+        <input type="text" name="reviewGrade" id="reviewGrade"/>
+        <label for="reviewString">请评论：</label>
+        <input type="text" name="reviewString" id="reviewString"/>
+        <input type="submit" value="提交"/>
+    </form>
+</div>
+
+{% for line in reviews %}
+    <div>
+        <h5>评论者</h5>
+        <h6>{{ line.reviewedAuthor_id }}</h6>
+        <h5>评论日期</h5>
+        <h6>{{ line.reviewDate }}</h6>
+        <h5>打分</h5>
+        <h6>{{ line.reviewGrade }}</h6>
+        <h5>评论内容</h5>
+        <h6>{{ line.reviewString }}</h6>
+    </div>
+{% endfor %}
+
+
+
 </html>

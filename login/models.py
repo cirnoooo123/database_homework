@@ -61,7 +61,7 @@ class Company(models.Model):
 class Review(models.Model):
     reviewGrade = models.IntegerField()
     reviewString = models.CharField(max_length=200)
-    reviewDate = models.DateField()
+    reviewDate = models.DateField(auto_now=True)
     reviewedAuthor = models.ForeignKey("WebUser", on_delete=models.CASCADE, null=True)
     reviewedMovie = models.ForeignKey("Movie", on_delete=models.CASCADE, null=True)
 
