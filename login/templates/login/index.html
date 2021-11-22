@@ -33,7 +33,7 @@
             {% for line in loveMovies %}
                 <tr>
                     <td>
-                        <a href="/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
+                        <a href="/login/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
                     </td>
                     <td>{{ line.movieDate }}</td>
                     <td>{{ line.2 }}</td>
@@ -53,7 +53,7 @@
             {% for line in loveActors %}
                 <tr>
                     <td>
-                        <a href="/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
+                        <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
                     </td>
                     <td>{{ line.actorAge }}</td>
                     <td><img src="{% static line.actorPhoto %}" alt="这是张少龙"></td>
@@ -73,7 +73,7 @@
             {% for line in loveDirectors %}
                 <tr>
                     <td>
-                        <a href="/director/?id={{ line.id }}"><ins>{{ line.directorName }}</ins></a>
+                        <a href="/login/director/?id={{ line.id }}"><ins>{{ line.directorName }}</ins></a>
                     </td>
                     <td>{{ line.directorAge }}</td>
                     <td>{{ line.2 }}</td>
