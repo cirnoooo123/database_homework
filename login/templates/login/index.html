@@ -14,7 +14,7 @@
 
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/element-ui@2.15.7/lib/index.js"></script>
-<div id="app">
+<div id="app" class="typo typo-selection">
     <el-container>
         <el-header>
             <el-dropdown>
@@ -48,11 +48,95 @@
             <el-main>
 
                 <div>
+                    <h1>电影推荐</h1>
+                    <table>
+                        <thead>
+                        <tr>
+                        <th>电影名</th>
+                        <th>上映日期</th>
+                        <th>风格</th>
+                        <th>获奖</th>
+                        <th>制作成本</th>
+                        <th>封面</th>
+                        </tr>
+                        </thead>
+                    <tbody>
+                        {% for line in recMovies %}
+                            <tr>
+                                <td>
+                                    <a href="/login/movie/?id={{ line.id }}">
+                                        <ins>{{ line.movieName }}</ins>
+                                    </a>
+                                </td>
+                                <td>{{ line.movieDate }}</td>
+                                <td>{{ line.movieStyle }}</td>
+                                <td>{{ line.movieWard }}</td>
+                                <td>{{ line.movieCost }}</td>
+                                <td><img src="{% static line.moviePhoto %}" alt=""></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h1>演员推荐</h1>
+                    <table>
+                        <thead>
+                        <td>姓名</td>
+                        <td>年龄</td>
+                        <td>出生地</td>
+                        <td>照片</td>
+                        {% for line in recActors %}
+                            <tr>
+                                <td>
+                                    <a href="/login/actor/?id={{ line.id }}">
+                                        <ins>{{ line.actorName }}</ins>
+                                    </a>
+                                </td>
+                                <td>{{ line.actorAge }}</td>
+                                <td>{{ line.actorBir }}</td>
+                                <td><img src="{% static line.actorPhoto %}" alt=""></td>
+                            </tr>
+                        {% endfor %}
+                        </thead>
+                    </table>
+                </div>
+
+                <div>
+                    <h1>导演推荐</h1>
+                    <table>
+                        <thead>
+                        <td>姓名</td>
+                        <td>年龄</td>
+                        <td>出生地</td>
+                        <td>照片</td>
+                        {% for line in recDirectors %}
+                            <tr>
+                                <td>
+                                    <a href="/login/director/?id={{ line.id }}">
+                                        <ins>{{ line.directorName }}</ins>
+                                    </a>
+                                </td>
+                                <td>{{ line.directorAge }}</td>
+                                <td>{{ line.directorBir }}</td>
+                                <td><img src="{% static line.directorPhoto %}" alt=""></td>
+                            </tr>
+                        {% endfor %}
+                        </thead>
+                    </table>
+                </div>
+
+                <div>
                     <h1>喜欢的电影</h1>
-                    <table class="typo">
+                    <table>
                         <thead>
                         <td>电影名</td>
                         <td>上映日期</td>
+                        <td>风格</td>
+                        <td>获奖</td>
+                        <td>制作成本</td>
+                        <td>封面</td>
                         {% for line in loveMovies %}
                             <tr>
                                 <td>
@@ -61,6 +145,10 @@
                                     </a>
                                 </td>
                                 <td>{{ line.movieDate }}</td>
+                                <td>{{ line.movieStyle }}</td>
+                                <td>{{ line.movieWard }}</td>
+                                <td>{{ line.movieCost }}</td>
+                                <td><img src="{% static line.moviePhoto %}" alt=""></td>
                             </tr>
                         {% endfor %}
                         </thead>
@@ -68,10 +156,12 @@
                 </div>
                 <div>
                     <h1>喜欢的演员</h1>
-                    <table class="typo">
+                    <table>
                         <thead>
                         <td>姓名</td>
                         <td>年龄</td>
+                        <td>出生地</td>
+                        <td>照片</td>
                         {% for line in loveActors %}
                             <tr>
                                 <td>
@@ -80,148 +170,21 @@
                                     </a>
                                 </td>
                                 <td>{{ line.actorAge }}</td>
-                                <td><img src="{% static line.actorPhoto %}" alt="这是张少龙"></td>
+                                <td>{{ line.actorBir }}</td>
+                                <td><img src="{% static line.actorPhoto %}" alt=""></td>
                             </tr>
                         {% endfor %}
                         </thead>
                     </table>
                 </div>
-<div>
-    <a href="movieList/" class="text-success "><ins>电影</ins></a>
-
-    <a href="actorList/" class="text-success "><ins>演员</ins></a>
-
-    <a href="directorList/" class="text-success "><ins>导演</ins></a>
-
-    <a href="companyList/" class="text-success "><ins>公司</ins></a>
-</div>
-
-
-<div>
-    <h1>电影推荐</h1>
-    <table>
-        <thead>
-            <td>电影名</td>
-            <td>上映日期</td>
-            <td>风格</td>
-            <td>获奖</td>
-            <td>制作成本</td>
-            <td>封面</td>
-            {% for line in recMovies %}
-                <tr>
-                    <td>
-                        <a href="/login/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
-                    </td>
-                    <td>{{ line.movieDate }}</td>
-                    <td>{{ line.movieStyle }}</td>
-                    <td>{{ line.movieWard }}</td>
-                    <td>{{ line.movieCost }}</td>
-                    <td><img src="{% static line.moviePhoto %}" alt=""></td>
-                </tr>
-            {% endfor %}
-        </thead>
-    </table>
-</div>
-
-<div>
-    <h1>演员推荐</h1>
-    <table>
-        <thead>
-            <td>姓名</td>
-            <td>年龄</td>
-            <td>出生地</td>
-            <td>照片</td>
-            {% for line in recActors %}
-                <tr>
-                    <td>
-                        <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
-                    </td>
-                    <td>{{ line.actorAge }}</td>
-                    <td>{{ line.actorBir }}</td>
-                    <td><img src="{% static line.actorPhoto %}" alt=""></td>
-                </tr>
-            {% endfor %}
-        </thead>
-    </table>
-</div>
-
-<div>
-    <h1>导演推荐</h1>
-    <table>
-        <thead>
-            <td>姓名</td>
-            <td>年龄</td>
-            <td>出生地</td>
-            <td>照片</td>
-            {% for line in recDirectors %}
-                <tr>
-                    <td>
-                        <a href="/login/director/?id={{ line.id }}"><ins>{{ line.directorName }}</ins></a>
-                    </td>
-                    <td>{{ line.directorAge }}</td>
-                    <td>{{ line.directorBir }}</td>
-                    <td><img src="{% static line.directorPhoto %}" alt=""></td>
-                </tr>
-            {% endfor %}
-        </thead>
-    </table>
-</div>
-
-
-<div>
-    <h1>喜欢的电影</h1>
-    <table>
-        <thead>
-            <td>电影名</td>
-            <td>上映日期</td>
-            <td>风格</td>
-            <td>获奖</td>
-            <td>制作成本</td>
-            <td>封面</td>
-            {% for line in loveMovies %}
-                <tr>
-                    <td>
-                        <a href="/login/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
-                    </td>
-                    <td>{{ line.movieDate }}</td>
-                    <td>{{ line.movieStyle }}</td>
-                    <td>{{ line.movieWard }}</td>
-                    <td>{{ line.movieCost }}</td>
-                    <td><img src="{% static line.moviePhoto %}" alt=""></td>
-                </tr>
-            {% endfor %}
-        </thead>
-    </table>
-</div>
-
-<div>
-    <h1>喜欢的演员</h1>
-    <table>
-        <thead>
-            <td>姓名</td>
-            <td>年龄</td>
-            <td>出生地</td>
-            <td>照片</td>
-            {% for line in loveActors %}
-                <tr>
-                    <td>
-                        <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
-                    </td>
-                    <td>{{ line.actorAge }}</td>
-                    <td>{{ line.actorBir }}</td>
-                    <td><img src="{% static line.actorPhoto %}" alt=""></td>
-                </tr>
-            {% endfor %}
-        </thead>
-    </table>
-</div>
-
                 <div>
                     <h1>喜欢的导演</h1>
-                    <table class="typo">
+                    <table>
                         <thead>
                         <td>姓名</td>
                         <td>年龄</td>
+                        <td>出生地</td>
+                        <td>照片</td>
                         {% for line in loveDirectors %}
                             <tr>
                                 <td>
@@ -230,6 +193,8 @@
                                     </a>
                                 </td>
                                 <td>{{ line.directorAge }}</td>
+                                <td>{{ line.directorBir }}</td>
+                                <td><img src="{% static line.directorPhoto %}" alt=""></td>
                             </tr>
                         {% endfor %}
                         </thead>
@@ -238,28 +203,6 @@
             </el-main>
         </el-container>
     </el-container>
-<div>
-    <h1>喜欢的导演</h1>
-    <table>
-        <thead>
-            <td>姓名</td>
-            <td>年龄</td>
-            <td>出生地</td>
-            <td>照片</td>
-            {% for line in loveDirectors %}
-                <tr>
-                    <td>
-                        <a href="/login/director/?id={{ line.id }}"><ins>{{ line.directorName }}</ins></a>
-                    </td>
-                    <td>{{ line.directorAge }}</td>
-                    <td>{{ line.directorBir }}</td>
-                    <td><img src="{% static line.directorPhoto %}" alt=""></td>
-                </tr>
-            {% endfor %}
-        </thead>
-    </table>
-</div>
-
 </div>
 
 <script>
