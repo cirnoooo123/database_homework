@@ -1,41 +1,87 @@
 body {
-  height: 100%;
-  background-image: url('../image/bg.png');
+    height: 100%;
+    background-image: url('../image/bg.png');
 }
+
 .form-login {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }
-.form-login{
-  margin-top:80px;
-  font-weight: 400;
+
+.form-login {
+    margin-top: 80px;
+    font-weight: 400;
 }
+
 .form-login .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
 
 }
+
 .form-login .form-control:focus {
-  z-index: 2;
+    z-index: 2;
 }
+
 .form-login input[type="text"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
+
 .form-login input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
-form a{
-  display: inline-block;
-  margin-top:25px;
-  font-size: 12px;
-  line-height: 10px;
+
+form a {
+    display: inline-block;
+    margin-top: 25px;
+    font-size: 12px;
+    line-height: 10px;
+}
+
+.el-header,
+.el-footer {
+    /*background-color: #B3C0D1;*/
+    color: #fff;
+    text-align: right;
+    font-size: 12px;
+    line-height: 60px;
+    background-color: #545c64;
+    text-color: #fff;
+    active-text-color: #ffd04b;
+}
+
+.el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+}
+
+.el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 20px;
+}
+
+.el-icon-setting {
+    margin-right: 15px;
+}
+
+a {
+    text-decoration: none;
+    /* 去除默认的下划线 */
+    outline: none;
+    /* 去除旧版浏览器的点击后的外虚线框 */
+    color: #000;
+    /* 去除默认的颜色和点击后变化的颜色 */
 }
