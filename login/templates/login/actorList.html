@@ -16,18 +16,20 @@
 
 <table border="1">
     <thead>
-    <td>ID</td>
-    <td>用户名</td>
-    <td>密码</td>
-    {% for line in result %}
-        <tr>
-            <td>
-                <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
-            </td>
-            <td>{{ line.1 }}</td>
-            <td>{{ line.2 }}</td>
-        </tr>
-    {% endfor %}
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>出生地</td>
+            <td>照片</td>
+            {% for line in result %}
+                <tr>
+                    <td>
+                        <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
+                    </td>
+                    <td>{{ line.actorAge }}</td>
+                    <td>{{ line.actorBir }}</td>
+                    <td><img src="{% static line.actorPhoto %}" alt=""></td>
+                </tr>
+            {% endfor %}
     </thead>
 </table>
 </body>

@@ -16,18 +16,24 @@
 
 <table border="1">
     <thead>
-    <td>ID</td>
-    <td>用户名</td>
-    <td>密码</td>
-    {% for line in result %}
-        <tr>
-            <td>
-                <a href="/login/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
-            </td>
-            <td>{{ line.1 }}</td>
-            <td>{{ line.2 }}</td>
-        </tr>
-    {% endfor %}
+            <td>电影名</td>
+            <td>上映日期</td>
+            <td>风格</td>
+            <td>获奖</td>
+            <td>制作成本</td>
+            <td>封面</td>
+            {% for line in result %}
+                <tr>
+                    <td>
+                        <a href="/login/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
+                    </td>
+                    <td>{{ line.movieDate }}</td>
+                    <td>{{ line.movieStyle }}</td>
+                    <td>{{ line.movieWard }}</td>
+                    <td>{{ line.movieCost }}</td>
+                    <td><img src="{% static line.moviePhoto %}" alt=""></td>
+                </tr>
+            {% endfor %}
     </thead>
 </table>
 </body>

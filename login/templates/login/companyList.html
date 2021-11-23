@@ -16,16 +16,14 @@
 
 <table border="1">
     <thead>
-    <td>ID</td>
-    <td>用户名</td>
-    <td>密码</td>
+    <td>公司名</td>
+    <td>公司所在地</td>
     {% for line in result %}
         <tr>
             <td>
                 <a href="/login/company/?id={{ line.id }}"><ins>{{ line.companyName }}</ins></a>
             </td>
-            <td>{{ line.1 }}</td>
-            <td>{{ line.2 }}</td>
+            <td>{{ line.companyAddr }}</td>
         </tr>
     {% endfor %}
     </thead>
