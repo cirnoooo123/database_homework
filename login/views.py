@@ -59,7 +59,7 @@ def register(request):
                 user = models.WebUser(username=username, upwd=password1)
                 user.save()
                 message = '注册成功！'
-                return render(request, 'login/login.html', locals())
+                return redirect("/login/login/")
     return render(request, 'login/register.html')
 
 
