@@ -23,22 +23,22 @@
                     </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item>
-                        <a href="movieList/" class="text-success">电影</a>
+                        <a href="/login/movieList/" class="text-success">电影</a>
                     </el-dropdown-item>
                     <el-dropdown-item>
-                        <a href="actorList/" class="text-success">演员</a>
+                        <a href="/login/actorList/" class="text-success">演员</a>
                     </el-dropdown-item>
                     <el-dropdown-item>
-                        <a href="directorList/" class="text-success">导演</a>
+                        <a href="/login/directorList/" class="text-success">导演</a>
                     </el-dropdown-item>
                     <el-dropdown-item>
-                        <a href="companyList/" class="text-success">公司</a>
+                        <a href="/login/companyList/" class="text-success">公司</a>
                     </el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
 
             <span>欢迎  {{ request.session.userName }}  !</span>
-            <a href="logout/" class="text-success">
+            <a href="/login/logout/" class="text-success">
                 <ins>注销</ins>
             </a>
         </el-header>
@@ -52,15 +52,15 @@
                     <table>
                         <thead>
                         <tr>
-                        <th>电影名</th>
-                        <th>上映日期</th>
-                        <th>风格</th>
-                        <th>获奖</th>
-                        <th>制作成本</th>
-                        <th>封面</th>
+                            <th>电影名</th>
+                            <th>上映日期</th>
+                            <th>风格</th>
+                            <th>获奖</th>
+                            <th>制作成本</th>
+                            <th>封面</th>
                         </tr>
                         </thead>
-                    <tbody>
+                        <tbody>
                         {% for line in recMovies %}
                             <tr>
                                 <td>
@@ -75,7 +75,7 @@
                                 <td><img src="{% static line.moviePhoto %}" alt=""></td>
                             </tr>
                         {% endfor %}
-                    </tbody>
+                        </tbody>
                     </table>
                 </div>
 
@@ -83,10 +83,14 @@
                     <h1>演员推荐</h1>
                     <table>
                         <thead>
-                        <td>姓名</td>
-                        <td>年龄</td>
-                        <td>出生地</td>
-                        <td>照片</td>
+                        <tr>
+                            <th>姓名</th>
+                            <th>年龄</th>
+                            <th>出生地</th>
+                            <th>照片</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {% for line in recActors %}
                             <tr>
                                 <td>
@@ -99,18 +103,21 @@
                                 <td><img src="{% static line.actorPhoto %}" alt=""></td>
                             </tr>
                         {% endfor %}
-                        </thead>
+                        </tbody>
                     </table>
                 </div>
-
                 <div>
                     <h1>导演推荐</h1>
                     <table>
                         <thead>
-                        <td>姓名</td>
-                        <td>年龄</td>
-                        <td>出生地</td>
-                        <td>照片</td>
+                        <tr>
+                            <th>姓名</th>
+                            <th>年龄</th>
+                            <th>出生地</th>
+                            <th>照片</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {% for line in recDirectors %}
                             <tr>
                                 <td>
@@ -123,20 +130,23 @@
                                 <td><img src="{% static line.directorPhoto %}" alt=""></td>
                             </tr>
                         {% endfor %}
-                        </thead>
+                        </tbody>
                     </table>
                 </div>
-
                 <div>
                     <h1>喜欢的电影</h1>
                     <table>
                         <thead>
-                        <td>电影名</td>
-                        <td>上映日期</td>
-                        <td>风格</td>
-                        <td>获奖</td>
-                        <td>制作成本</td>
-                        <td>封面</td>
+                        <tr>
+                            <td>电影名</td>
+                            <td>上映日期</td>
+                            <td>风格</td>
+                            <td>获奖</td>
+                            <td>制作成本</td>
+                            <td>封面</td>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {% for line in loveMovies %}
                             <tr>
                                 <td>
@@ -151,17 +161,21 @@
                                 <td><img src="{% static line.moviePhoto %}" alt=""></td>
                             </tr>
                         {% endfor %}
-                        </thead>
+                        </tbody>
                     </table>
                 </div>
                 <div>
                     <h1>喜欢的演员</h1>
                     <table>
                         <thead>
-                        <td>姓名</td>
-                        <td>年龄</td>
-                        <td>出生地</td>
-                        <td>照片</td>
+                        <tr>
+                            <td>姓名</td>
+                            <td>年龄</td>
+                            <td>出生地</td>
+                            <td>照片</td>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {% for line in loveActors %}
                             <tr>
                                 <td>
@@ -174,17 +188,21 @@
                                 <td><img src="{% static line.actorPhoto %}" alt=""></td>
                             </tr>
                         {% endfor %}
-                        </thead>
+                        </tbody>
                     </table>
                 </div>
                 <div>
                     <h1>喜欢的导演</h1>
                     <table>
                         <thead>
-                        <td>姓名</td>
-                        <td>年龄</td>
-                        <td>出生地</td>
-                        <td>照片</td>
+                        <tr>
+                            <td>姓名</td>
+                            <td>年龄</td>
+                            <td>出生地</td>
+                            <td>照片</td>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {% for line in loveDirectors %}
                             <tr>
                                 <td>
@@ -197,7 +215,8 @@
                                 <td><img src="{% static line.directorPhoto %}" alt=""></td>
                             </tr>
                         {% endfor %}
-                        </thead>
+
+                        </tbody>
                     </table>
                 </div>
             </el-main>

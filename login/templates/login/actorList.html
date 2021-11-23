@@ -2,35 +2,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'login/css/typo.css' %}">
+    <title>演员列表</title>
 </head>
+
 <body>
-<a href="/login/" class="text-success "><ins>返回</ins></a>
 
-<form class="form-login" action="" method="post">
-    {% csrf_token %}
-    <input type="text" name="actorName"/>
-    <input type="submit" value="查询"/>
-</form>
 
-<table border="1">
-    <thead>
-            <td>姓名</td>
-            <td>年龄</td>
-            <td>出生地</td>
-            <td>照片</td>
-            {% for line in result %}
-                <tr>
-                    <td>
-                        <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
-                    </td>
-                    <td>{{ line.actorAge }}</td>
-                    <td>{{ line.actorBir }}</td>
-                    <td><img src="{% static line.actorPhoto %}" alt=""></td>
-                </tr>
-            {% endfor %}
-    </thead>
-</table>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui@2.15.7/lib/index.js"></script>
+<div id="app" class="typo typo-selection">
+    <el-container>
+        <el-header>
+                <span>
+                    <a href="/login">返回
+                    <i class="el-icon-back el-icon--right"></i>
+                    </a>
+                </span>
+            <el-dropdown>
+
+                <span class="el-dropdown-link">我的订阅
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>
+                        <a href="/login/movieList/" class="text-success">电影</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                        <a href="/login/actorList/" class="text-success">演员</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                        <a href="/login/directorList/" class="text-success">导演</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                        <a href="/login/companyList/" class="text-success">公司</a>
+                    </el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+
+            <span>欢迎  {{ request.session.userName }}  !</span>
+            <a href="/login/logout/" class="text-success">
+                <ins>注销</ins>
+            </a>
+        </el-header>
+
+        <el-container>
+            <el-aside width="200px">Aside</el-aside>
+            <el-main>
+                <h1>演员列表</h1>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="actorName"/>
+                    <input type="submit" value="查询"/>
+                </form>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>年龄</th>
+                        <th>出生地</th>
+                        <th>照片</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for line in result %}
+                        <tr>
+                            <td>
+                                <a href="/login/actor/?id={{ line.id }}">
+                                    <ins>{{ line.actorName }}</ins>
+                                </a>
+                            </td>
+                            <td>{{ line.actorAge }}</td>
+                            <td>{{ line.actorBir }}</td>
+                            <td><img src="{% static line.actorPhoto %}" alt=""></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </el-main>
+        </el-container>
+    </el-container>
+</div>
+
+<script>
+    new Vue().$mount('#app')
+</script>
 </body>
 </html>

@@ -52,7 +52,7 @@ form a {
     /*background-color: #B3C0D1;*/
     color: #fff;
     text-align: right;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 60px;
     background-color: #545c64;
     text-color: #fff;
@@ -66,10 +66,14 @@ form a {
     line-height: 200px;
 }
 
+.el-dropdown {
+    color: #fff
+}
+
 .el-main {
     background-color: #fff;
     color: #333;
-    text-align: center;
+    text-align: left;
     line-height: 20px;
 }
 
