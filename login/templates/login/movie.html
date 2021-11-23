@@ -3,96 +3,142 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>电影详细</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'login/css/typo.css' %}">
+    <title>电影</title>
 </head>
+
 <body>
-<a href="/login/" class="text-success "><ins>返回</ins></a>
-<h1>{{ result.movieName }}</h1>
-<a href="/login/movie/?type=loveMovie&id={{ result.id }}"><ins>订阅</ins></a>
-<a href="/login/movie/?type=deLoveMovie&id={{ result.id }}"><ins>退订</ins></a>
 
-<div>
-    <h5>{{ result.movieIntroduction }}</h5>
-    <h5>{{ result.movieDate }}</h5>
-    <h5>{{ result.movieStyle }}</h5>
-    <h5>{{ result.movieWard }}</h5>
-    <h5>{{ result.movieCost }}</h5>
-    <a href="/login/company/?id={{ result.movieCompany_id }}"><ins>{{ result.movieCompany.companyName }}</ins></a>
-    <img src="{% static result.moviePhoto %}" alt="">
-    <h1>主演</h1>
-    <table border="1">
-    <thead>
-            <td>姓名</td>
-            <td>年龄</td>
-            <td>出生地</td>
-            <td>照片</td>
-            {% for line in actors %}
-                <tr>
-                    <td>
-                        <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
-                    </td>
-                    <td>{{ line.actorAge }}</td>
-                    <td>{{ line.actorBir }}</td>
-                    <td><img src="{% static line.actorPhoto %}" alt=""></td>
-                </tr>
-            {% endfor %}
-    </thead>
-    </table>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui@2.15.7/lib/index.js"></script>
+<div id="app" class="typo typo-selection">
+    <el-container>
+        <el-header>
+                <span>
+                    <a href="/login">返回
+                    <i class="el-icon-back el-icon--right"></i>
+                    </a>
+                </span>
+            <el-dropdown>
+
+                <span class="el-dropdown-link">我的订阅
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>
+                        <a href="/login/movieList/" class="text-success">电影</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                        <a href="/login/actorList/" class="text-success">演员</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                        <a href="/login/directorList/" class="text-success">导演</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                        <a href="/login/companyList/" class="text-success">公司</a>
+                    </el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+
+            <span>欢迎  {{ request.session.userName }}  !</span>
+            <a href="/login/logout/" class="text-success">
+                <ins>注销</ins>
+            </a>
+        </el-header>
+
+        <el-container>
+            <el-aside width="200px">Aside</el-aside>
+            <el-main>
+                <h1>{{ result.movieName }}</h1>
+                <div id="headline">
+                    <div class="pic">
+                        <img src="{% static result.moviePhoto %}" alt="wrong">
+                    </div>
+
+                    <div class="info">
+                        <ul>
+                            <li>
+                                <span>导演:</span>
+                                {% for line in directors %}
+                                    <a href="/login/director/?id={{ line.id }}">{{ line.directorName }}</a>
+                                {% endfor %}
+                            </li>
+                            <li>
+                                <span>主演:</span>
+                                {% for line in actors %}
+                                    <a href="/login/actor/?id={{ line.id }}">{{ line.actorName }}</a>
+                                {% endfor %}
+                            </li>
+                            <li>
+                                <span>介绍:</span>{{ result.movieIntroduction }}
+                            </li>
+                            <li>
+                                <span>上映日期:</span>{{ result.movieDate }}
+                            </li>
+                            <li>
+                                <span>电影风格:</span>{{ result.movieStyle }}
+                            </li>
+                            <li>
+                                <span>电影奖项:</span>{{ result.movieWard }}
+                            </li>
+                            <li>
+                                <span>电影成本:</span>{{ result.movieCost }}
+                            </li>
+                            <li>
+                                <span>电影公司:</span>
+                                <a href="/login/company/?id={{ result.movieCompany_id }}">
+                                    <ins>{{ result.movieCompany.companyName }}</ins>
+                                </a>
+                            </li>
 
 
-    <h1>导演</h1>
-    <table border="1">
-    <thead>
-            <td>姓名</td>
-            <td>年龄</td>
-            <td>出生地</td>
-            <td>照片</td>
-            {% for line in directors %}
-                <tr>
-                    <td>
-                        <a href="/login/director/?id={{ line.id }}"><ins>{{ line.directorName }}</ins></a>
-                    </td>
-                    <td>{{ line.directorAge }}</td>
-                    <td>{{ line.directorBir }}</td>
-                    <td><img src="{% static line.directorPhoto %}" alt=""></td>
-                </tr>
-            {% endfor %}
-    </thead>
-    </table>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="subscribe">
+                    <a href="/login/director/?type=loveDirector&id={{ result.id }}">
+                        <el-button type="success" icon="el-icon-check">订阅</el-button>
+                    </a>
+                    <a href="/login/director/?type=deLoveDirector&id={{ result.id }}">
+                        <el-button type="warning" icon="el-icon-close">退订</el-button>
+                    </a>
+                </div>
+                <div>
+                    <div class="commentin">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <label for="reviewGrade">请打分：</label>
+                            <input type="text" name="reviewGrade" id="reviewGrade"/>
+                            <label for="reviewString">请评论：</label>
+                            <input type="text" name="reviewString" id="reviewString"/>
+                            <input type="submit" value="提交"/>
+                        </form>
+                    </div>
+                    {% for line in reviews %}
+                        <div class="commentout">
+                            <h5>评论者:{{ line.reviewedAuthor_id }}</h5>
+                            <h5>评论日期:{{ line.reviewDate }}</h5>
+                            <h5>打分:{{ line.reviewGrade }}</h5>
+                            <h5>评论内容:</h5>
+                            <p>{{ line.reviewString }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </el-main>
+        </el-container>
+    </el-container>
 </div>
 
 
+<script>
+    new Vue().$mount('#app')
+</script>
 
-
-<div>
-    <form class="form-login" action="" method="post">
-        {% csrf_token %}
-        <label for="reviewGrade">请打分：</label>
-        <input type="text" name="reviewGrade" id="reviewGrade"/>
-        <label for="reviewString">请评论：</label>
-        <input type="text" name="reviewString" id="reviewString"/>
-        <input type="submit" value="提交"/>
-    </form>
-</div>
-
-
-{% for line in reviews %}
-    <div>
-        <h5>评论者</h5>
-        <h6>{{ line.reviewedAuthor_id }}</h6>
-        <h5>评论日期</h5>
-        <h6>{{ line.reviewDate }}</h6>
-        <h5>打分</h5>
-        <h6>{{ line.reviewGrade }}</h6>
-        <h5>评论内容</h5>
-        <h6>{{ line.reviewString }}</h6>
-    </div>
-{% endfor %}
 
 </body>
-
-
-
 
 
 </html>
