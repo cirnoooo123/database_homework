@@ -1,6 +1,6 @@
 body {
     height: 100%;
-    background-image: url('../image/bg.png');
+    /*background-image: url('../image/bg.png');*/
 }
 
 .form-login {
@@ -89,3 +89,41 @@ a {
     color: #000;
     /* 去除默认的颜色和点击后变化的颜色 */
 }
+
+.info li span {
+    color: #666666;
+}
+
+img {
+    max-width: 100%;
+}
+
+#headline {
+    overflow: hidden;
+}
+
+#headline img {
+    width: 400px;
+}
+
+#headline ul {
+    list-style: none;
+}
+
+.subscribe {
+    margin-top: 20px;
+}
+
+.pic, .info {
+    float: left;
+}
+
+.commentin, .commentout {
+    margin-top: 20px;
+}
+
+.commentout {
+    border-color: #666666;
+    border-style: solid;
+}
+
