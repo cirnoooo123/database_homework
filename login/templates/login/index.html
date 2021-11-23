@@ -23,6 +23,78 @@
     <a href="companyList/" class="text-success "><ins>公司</ins></a>
 </div>
 
+
+<div>
+    <h1>电影推荐</h1>
+    <table>
+        <thead>
+            <td>电影名</td>
+            <td>上映日期</td>
+            <td>风格</td>
+            <td>获奖</td>
+            <td>制作成本</td>
+            <td>封面</td>
+            {% for line in recMovies %}
+                <tr>
+                    <td>
+                        <a href="/login/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
+                    </td>
+                    <td>{{ line.movieDate }}</td>
+                    <td>{{ line.movieStyle }}</td>
+                    <td>{{ line.movieWard }}</td>
+                    <td>{{ line.movieCost }}</td>
+                    <td><img src="{% static line.moviePhoto %}" alt=""></td>
+                </tr>
+            {% endfor %}
+        </thead>
+    </table>
+</div>
+
+<div>
+    <h1>演员推荐</h1>
+    <table>
+        <thead>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>出生地</td>
+            <td>照片</td>
+            {% for line in recActors %}
+                <tr>
+                    <td>
+                        <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
+                    </td>
+                    <td>{{ line.actorAge }}</td>
+                    <td>{{ line.actorBir }}</td>
+                    <td><img src="{% static line.actorPhoto %}" alt=""></td>
+                </tr>
+            {% endfor %}
+        </thead>
+    </table>
+</div>
+
+<div>
+    <h1>导演推荐</h1>
+    <table>
+        <thead>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>出生地</td>
+            <td>照片</td>
+            {% for line in recDirectors %}
+                <tr>
+                    <td>
+                        <a href="/login/director/?id={{ line.id }}"><ins>{{ line.directorName }}</ins></a>
+                    </td>
+                    <td>{{ line.directorAge }}</td>
+                    <td>{{ line.directorBir }}</td>
+                    <td><img src="{% static line.directorPhoto %}" alt=""></td>
+                </tr>
+            {% endfor %}
+        </thead>
+    </table>
+</div>
+
+
 <div>
     <h1>喜欢的电影</h1>
     <table>

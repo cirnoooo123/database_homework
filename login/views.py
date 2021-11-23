@@ -1,3 +1,5 @@
+import random
+
 from django.forms import model_to_dict
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -74,9 +76,34 @@ def index(request):
     movies = user.loveMovies.all().values()
     actors = user.loveActors.all().values()
     directors = user.loveDirectors.all().values()
+
+    last = models.Movie.objects.count() - 1
+    index1 = random.randint(0, last)
+    index2 = random.randint(0, last)
+    if index2 == index1:
+        index2 = last
+    movies2 = [models.Movie.objects.all()[index1], models.Movie.objects.all()[index2]]
+
+    last = models.Actor.objects.count() - 1
+    index1 = random.randint(0, last)
+    index2 = random.randint(0, last)
+    if index2 == index1:
+        index2 = last
+    actors2 = [models.Actor.objects.all()[index1], models.Actor.objects.all()[index2]]
+
+    last = models.Director.objects.count() - 1
+    index1 = random.randint(0, last)
+    index2 = random.randint(0, last)
+    if index2 == index1:
+        index2 = last
+    directors2 = [models.Director.objects.all()[index1], models.Director.objects.all()[index2]]
+
     result["loveMovies"] = movies
     result["loveActors"] = actors
     result["loveDirectors"] = directors
+    result["recMovies"] = movies2
+    result["recActors"] = actors2
+    result["recDirectors"] = directors2
     return render(request, 'login/index.html', result)
 
 
