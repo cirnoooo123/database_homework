@@ -3,85 +3,117 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'login/css/typo.css' %}">
     <title>首页</title>
 </head>
 
 <body>
 
-<div>
-    <a>欢迎 {{ request.session.userName }} !</a>
-    <a href="logout/" class="text-success"><ins>注销</ins></a>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui@2.15.7/lib/index.js"></script>
+<div id="app">
+    <el-container>
+        <el-header>
+            <el-dropdown>
+                    <span class="el-dropdown-link">我的订阅
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>
+                        <a href="movieList/" class="text-success">电影</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                        <a href="actorList/" class="text-success">演员</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                        <a href="directorList/" class="text-success">导演</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item>
+                        <a href="companyList/" class="text-success">公司</a>
+                    </el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+
+            <span>欢迎  {{ request.session.userName }}  !</span>
+            <a href="logout/" class="text-success">
+                <ins>注销</ins>
+            </a>
+        </el-header>
+
+        <el-container>
+            <el-aside width="200px">Aside</el-aside>
+            <el-main>
+
+                <div>
+                    <h1>喜欢的电影</h1>
+                    <table class="typo">
+                        <thead>
+                        <td>电影名</td>
+                        <td>上映日期</td>
+                        {% for line in loveMovies %}
+                            <tr>
+                                <td>
+                                    <a href="/login/movie/?id={{ line.id }}">
+                                        <ins>{{ line.movieName }}</ins>
+                                    </a>
+                                </td>
+                                <td>{{ line.movieDate }}</td>
+                            </tr>
+                        {% endfor %}
+                        </thead>
+                    </table>
+                </div>
+                <div>
+                    <h1>喜欢的演员</h1>
+                    <table class="typo">
+                        <thead>
+                        <td>姓名</td>
+                        <td>年龄</td>
+                        {% for line in loveActors %}
+                            <tr>
+                                <td>
+                                    <a href="/login/actor/?id={{ line.id }}">
+                                        <ins>{{ line.actorName }}</ins>
+                                    </a>
+                                </td>
+                                <td>{{ line.actorAge }}</td>
+                                <td><img src="{% static line.actorPhoto %}" alt="这是张少龙"></td>
+                            </tr>
+                        {% endfor %}
+                        </thead>
+                    </table>
+                </div>
+
+                <div>
+                    <h1>喜欢的导演</h1>
+                    <table class="typo">
+                        <thead>
+                        <td>姓名</td>
+                        <td>年龄</td>
+                        {% for line in loveDirectors %}
+                            <tr>
+                                <td>
+                                    <a href="/login/director/?id={{ line.id }}">
+                                        <ins>{{ line.directorName }}</ins>
+                                    </a>
+                                </td>
+                                <td>{{ line.directorAge }}</td>
+                            </tr>
+                        {% endfor %}
+                        </thead>
+                    </table>
+                </div>
+            </el-main>
+        </el-container>
+    </el-container>
+
 </div>
 
-<div>
-    <a href="movieList/" class="text-success "><ins>电影</ins></a>
-
-    <a href="actorList/" class="text-success "><ins>演员</ins></a>
-
-    <a href="directorList/" class="text-success "><ins>导演</ins></a>
-
-    <a href="companyList/" class="text-success "><ins>公司</ins></a>
-</div>
-
-<div>
-    <h1>喜欢的电影</h1>
-    <table>
-        <thead>
-            <td>电影名</td>
-            <td>上映日期</td>
-            <td>密码</td>
-            {% for line in loveMovies %}
-                <tr>
-                    <td>
-                        <a href="/login/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
-                    </td>
-                    <td>{{ line.movieDate }}</td>
-                    <td>{{ line.2 }}</td>
-                </tr>
-            {% endfor %}
-        </thead>
-    </table>
-</div>
-
-<div>
-    <h1>喜欢的演员</h1>
-    <table>
-        <thead>
-            <td>姓名</td>
-            <td>年龄</td>
-            <td>密码</td>
-            {% for line in loveActors %}
-                <tr>
-                    <td>
-                        <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
-                    </td>
-                    <td>{{ line.actorAge }}</td>
-                    <td><img src="{% static line.actorPhoto %}" alt="这是张少龙"></td>
-                </tr>
-            {% endfor %}
-        </thead>
-    </table>
-</div>
-
-<div>
-    <h1>喜欢的导演</h1>
-    <table>
-        <thead>
-            <td>姓名</td>
-            <td>年龄</td>
-            <td>密码</td>
-            {% for line in loveDirectors %}
-                <tr>
-                    <td>
-                        <a href="/login/director/?id={{ line.id }}"><ins>{{ line.directorName }}</ins></a>
-                    </td>
-                    <td>{{ line.directorAge }}</td>
-                    <td>{{ line.2 }}</td>
-                </tr>
-            {% endfor %}
-        </thead>
-    </table>
-</div>
-
+<script>
+    new Vue().$mount('#app')
+</script>
 </body>
 </html>
