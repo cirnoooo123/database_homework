@@ -10,7 +10,58 @@
 <h1>{{ result.movieName }}</h1>
 <a href="/login/movie/?type=loveMovie&id={{ result.id }}"><ins>订阅</ins></a>
 <a href="/login/movie/?type=deLoveMovie&id={{ result.id }}"><ins>退订</ins></a>
-</body>
+
+<div>
+    <h5>{{ result.movieIntroduction }}</h5>
+    <h5>{{ result.movieDate }}</h5>
+    <h5>{{ result.movieStyle }}</h5>
+    <h5>{{ result.movieWard }}</h5>
+    <h5>{{ result.movieCost }}</h5>
+    <a href="/login/company/?id={{ result.movieCompany_id }}"><ins>{{ result.movieCompany.companyName }}</ins></a>
+    <img src="{% static result.moviePhoto %}" alt="">
+    <h1>主演</h1>
+    <table border="1">
+    <thead>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>出生地</td>
+            <td>照片</td>
+            {% for line in directors %}
+                <tr>
+                    <td>
+                        <a href="/login/actor/?id={{ line.id }}"><ins>{{ line.actorName }}</ins></a>
+                    </td>
+                    <td>{{ line.actorAge }}</td>
+                    <td>{{ line.actorBir }}</td>
+                    <td><img src="{% static line.actorPhoto %}" alt=""></td>
+                </tr>
+            {% endfor %}
+    </thead>
+    </table>
+
+
+    <h1>导演</h1>
+    <table border="1">
+    <thead>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>出生地</td>
+            <td>照片</td>
+            {% for line in directors %}
+                <tr>
+                    <td>
+                        <a href="/login/director/?id={{ line.id }}"><ins>{{ line.directorName }}</ins></a>
+                    </td>
+                    <td>{{ line.directorAge }}</td>
+                    <td>{{ line.directorBir }}</td>
+                    <td><img src="{% static line.directorPhoto %}" alt=""></td>
+                </tr>
+            {% endfor %}
+    </thead>
+    </table>
+</div>
+
+
 
 
 <div>
@@ -24,6 +75,7 @@
     </form>
 </div>
 
+
 {% for line in reviews %}
     <div>
         <h5>评论者</h5>
@@ -36,6 +88,10 @@
         <h6>{{ line.reviewString }}</h6>
     </div>
 {% endfor %}
+
+</body>
+
+
 
 
 

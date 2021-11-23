@@ -10,5 +10,35 @@
 <h1>{{ result.directorName }}</h1>
 <a href="/login/director/?type=loveDirector&id={{ result.id }}"><ins>订阅</ins></a>
 <a href="/login/director/?type=deLoveDirector&id={{ result.id }}"><ins>退订</ins></a>
+
+<div>
+    <h5>{{ result.directorAge }}</h5>
+    <h5>{{ result.directorBir }}</h5>
+    <img src="{% static result.directorPhoto %}" alt="">
+    <h1>代表作</h1>
+    <table border="1">
+    <thead>
+            <td>电影名</td>
+            <td>上映日期</td>
+            <td>风格</td>
+            <td>获奖</td>
+            <td>制作成本</td>
+            <td>封面</td>
+            {% for line in movies %}
+                <tr>
+                    <td>
+                        <a href="/login/movie/?id={{ line.id }}"><ins>{{ line.movieName }}</ins></a>
+                    </td>
+                    <td>{{ line.movieDate }}</td>
+                    <td>{{ line.movieStyle }}</td>
+                    <td>{{ line.movieWard }}</td>
+                    <td>{{ line.movieCost }}</td>
+                    <td><img src="{% static line.moviePhoto %}" alt=""></td>
+                </tr>
+            {% endfor %}
+    </thead>
+</table>
+</div>
+
 </body>
 </html>

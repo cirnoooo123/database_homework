@@ -144,7 +144,9 @@ def movie(request):
     movieId = request.GET.get("id")
     m = models.Movie.objects.get(id=movieId)
     reviews = m.review_set.all().values()
-    return render(request, 'login/movie.html', {"result": m, "reviews": reviews})
+    actors = m.actor_set.all().values()
+    directors = m.director_set.all().values()
+    return render(request, 'login/movie.html', {"result": m, "reviews": reviews, "actors": actors, "directors": directors})
 
 
 def actorList(request):
@@ -177,7 +179,8 @@ def actor(request):
 
     actorId = request.GET.get("id")
     m = models.Actor.objects.get(id=actorId)
-    return render(request, 'login/actor.html', {"result": m})
+    movies = m.majorActedMovies.all().values()
+    return render(request, 'login/actor.html', {"result": m, "movies": movies})
 
 
 def directorList(request):
@@ -207,7 +210,8 @@ def director(request):
 
     directorId = request.GET.get("id")
     m = models.Director.objects.get(id=directorId)
-    return render(request, 'login/director.html', {"result": m})
+    movies = m.representativeMovies.all().values()
+    return render(request, 'login/director.html', {"result": m, "movies": movies})
 
 
 def companyList(request):
@@ -222,4 +226,5 @@ def companyList(request):
 def company(request):
     companyId = request.GET.get("id")
     m = models.Company.objects.get(id=companyId)
-    return render(request, 'login/company.html', {"result": m})
+    movies = m.movie_set.all().values()
+    return render(request, 'login/company.html', {"result": m, "movies": movies})
