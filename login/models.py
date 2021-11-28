@@ -37,7 +37,7 @@ class Movie(models.Model):
 
 class Director(models.Model):
     directorName = models.CharField(max_length=30)
-    directorAge = models.IntegerField()
+    directorAge = models.DateField()
     directorBir = models.CharField(max_length=30)
     directorPhoto = models.CharField(max_length=100)
     representativeMovies = models.ManyToManyField("Movie")
@@ -45,7 +45,7 @@ class Director(models.Model):
 
 class Actor(models.Model):
     actorName = models.CharField(max_length=30)
-    actorAge = models.IntegerField()
+    actorAge = models.DateField()
     actorBir = models.CharField(max_length=30)
     actorPhoto = models.CharField(max_length=100)
     majorActedMovies = models.ManyToManyField("Movie")
