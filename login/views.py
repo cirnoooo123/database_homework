@@ -73,9 +73,6 @@ def logout(request):
 def index(request):
     user = models.WebUser.objects.get(username=request.session.get("userName"))
     result = {}
-    movies = user.loveMovies.all().values()
-    actors = user.loveActors.all().values()
-    directors = user.loveDirectors.all().values()
 
     last = models.Movie.objects.count() - 1
     index1 = random.randint(0, last)
@@ -98,9 +95,6 @@ def index(request):
         index2 = last
     directors2 = [models.Director.objects.all()[index1], models.Director.objects.all()[index2]]
 
-    result["loveMovies"] = movies
-    result["loveActors"] = actors
-    result["loveDirectors"] = directors
     result["recMovies"] = movies2
     result["recActors"] = actors2
     result["recDirectors"] = directors2
@@ -228,3 +222,23 @@ def company(request):
     m = models.Company.objects.get(id=companyId)
     movies = m.movie_set.all().values()
     return render(request, 'login/company.html', {"result": m, "movies": movies})
+
+
+def userPage(request):
+    if request.GET.get("type") == "deleteReview":
+        deletingReview = models.Review.objects.get(id=request.GET.get("reviewId"))
+        models.Review.delete(deletingReview)
+
+    user = models.WebUser.objects.get(username=request.session.get("userName"))
+    result = {}
+    movies = user.loveMovies.all().values()
+    actors = user.loveActors.all().values()
+    directors = user.loveDirectors.all().values()
+    reviews = user.review_set.all().values()
+
+    result["loveMovies"] = movies
+    result["loveActors"] = actors
+    result["loveDirectors"] = directors
+    result["reviews"] = reviews
+
+    return render(request, 'login/userPage.html', result)
