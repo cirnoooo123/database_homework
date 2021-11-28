@@ -90,6 +90,11 @@
             </el-main>
         </el-container>
     </el-container>
+
+
+    {% for line in styles %}
+        <a href="/login/movieList/?type=queryStyle&style={{ line }}"><ins>{{ line }}</ins></a>
+    {% endfor %}
 </div>
 
 <script>

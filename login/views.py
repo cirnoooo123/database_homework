@@ -102,12 +102,22 @@ def index(request):
 
 
 def movieList(request):
+    styleSet = set()
+    movies = models.Movie.objects.all().values()
+    for var in movies:
+        s = var.get("movieStyle").split(" ")
+        for style in s:
+            styleSet.add(style)
+
     if request.method == 'POST':
         movieName = request.POST.get("movieName")
         movies = models.Movie.objects.filter(movieName__contains=movieName).values()
-        return render(request, 'login/movieList.html', {"result": movies})
-    movies = models.Movie.objects.all().values()
-    return render(request, 'login/movieList.html', {"result": movies})
+        return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
+
+    if request.GET.get("type") == "queryStyle":
+        movies = models.Movie.objects.filter(movieStyle__contains=request.GET.get("style"))
+        return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
+    return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
 
 
 def movie(request):

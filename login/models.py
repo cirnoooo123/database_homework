@@ -25,12 +25,10 @@ class WebUser(models.Model):
 
 
 class Movie(models.Model):
-    style = (('0', "喜剧"), ('1', "悲剧"))
-
     movieName = models.CharField(max_length=100)
     movieIntroduction = models.CharField(max_length=500)
     movieDate = models.DateField()
-    movieStyle = models.CharField(max_length=20, choices=style)
+    movieStyle = models.CharField(max_length=20)
     moviePhoto = models.CharField(max_length=100)
     movieWard = models.CharField(max_length=30)
     movieCost = models.BigIntegerField()
