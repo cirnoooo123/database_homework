@@ -76,7 +76,7 @@
                                 <td>{{ line.movieStyle }}</td>
                                 <td>{{ line.movieWard }}</td>
                                 <td>{{ line.movieCost }}</td>
-                                <td><img src="{% static line.moviePhoto %}" alt=""></td>
+                                <td><img src="{{  line.moviePhoto }}" alt=""></td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -104,7 +104,7 @@
                                 </td>
                                 <td>{{ line.actorAge }}</td>
                                 <td>{{ line.actorBir }}</td>
-                                <td><img src="{% static line.actorPhoto %}" alt=""></td>
+                                <td><img src="{{ line.actorPhoto }}" alt=""></td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -131,7 +131,7 @@
                                 </td>
                                 <td>{{ line.directorAge }}</td>
                                 <td>{{ line.directorBir }}</td>
-                                <td><img src="{% static line.directorPhoto %}" alt=""></td>
+                                <td><img src="{{ line.directorPhoto }}" alt=""></td>
                             </tr>
                         {% endfor %}
                         </tbody>

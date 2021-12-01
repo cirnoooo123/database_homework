@@ -55,7 +55,7 @@
                 <h1>{{ result.directorName }}</h1>
                 <div id="headline">
                     <div class="pic">
-                        <img src="{% static result.directorPhoto %}" alt="wrong">
+                        <img src="{{ result.directorPhoto }}" alt="wrong">
                     </div>
 
                     <div class="info">
@@ -103,7 +103,7 @@
                                 <td>{{ line.movieStyle }}</td>
                                 <td>{{ line.movieWard }}</td>
                                 <td>{{ line.movieCost }}</td>
-                                <td><img src="{% static line.moviePhoto %}" alt=""></td>
+                                <td><img src="{{ line.moviePhoto }}" alt=""></td>
                             </tr>
                         {% endfor %}
 

@@ -26,12 +26,11 @@ class WebUser(models.Model):
 
 class Movie(models.Model):
     movieName = models.CharField(max_length=100)
-    movieIntroduction = models.CharField(max_length=500)
+    movieIntroduction = models.CharField(max_length=1000, default="无")
     movieDate = models.DateField()
     movieStyle = models.CharField(max_length=20)
     moviePhoto = models.CharField(max_length=100)
     movieWard = models.CharField(max_length=30)
-    movieCost = models.BigIntegerField()
     movieCompany = models.ForeignKey("Company", on_delete=models.CASCADE, null=True)
 
 
@@ -52,8 +51,8 @@ class Actor(models.Model):
 
 
 class Company(models.Model):
-    companyName = models.CharField(max_length=30)
-    companyAddr = models.CharField(max_length=30)
+    companyName = models.CharField(max_length=50)
+    companyAddr = models.CharField(max_length=50)
 
 
 class Review(models.Model):

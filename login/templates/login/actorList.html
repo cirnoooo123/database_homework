@@ -78,7 +78,7 @@
                             </td>
                             <td>{{ line.actorAge }}</td>
                             <td>{{ line.actorBir }}</td>
-                            <td><img src="{% static line.actorPhoto %}" alt=""></td>
+                            <td><img src="{{ line.actorPhoto }}" alt=""></td>
                         </tr>
                     {% endfor %}
                     </tbody>
