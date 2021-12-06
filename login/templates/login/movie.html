@@ -106,6 +106,9 @@
                 </div>
                 <div>
                     <div class="commentin">
+                        {% if message %}
+                            <div class="alert alert-warning">{{ message }}</div>
+                        {% endif %}
                         <form action="" method="post">
                             {% csrf_token %}
                             <label for="reviewGrade">请打分：</label>

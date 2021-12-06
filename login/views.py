@@ -121,6 +121,7 @@ def movieList(request):
 
 
 def movie(request):
+    message = ""
     if request.GET.get("type") == "loveMovie":
         userName = request.session.get("userName")
         movieId = request.GET.get("id")
@@ -138,19 +139,26 @@ def movie(request):
         return redirect("/login/movie?id=" + request.GET.get("id"))
 
     elif request.method == 'POST':
-        reviewGrade = int(request.POST.get("reviewGrade"))
-        reviewString = request.POST.get("reviewString")
-        movieId = request.GET.get("id")
-        newReview = models.Review(reviewGrade=reviewGrade, reviewString=reviewString,
-                                  reviewedAuthor_id=request.session.get("userName"), reviewedMovie_id=movieId)
-        newReview.save()
+        if not str.isdigit(request.POST.get("reviewGrade")) or not 1 <= int(request.POST.get("reviewGrade")) <= 5:
+            message = "评分为1-5的数字，请检查输入"
+        elif len(request.POST.get("reviewString")) > 200:
+            message = "评论过长"
+        else:
+            message = "评论成功"
+            reviewGrade = int(request.POST.get("reviewGrade"))
+            reviewString = request.POST.get("reviewString")
+            movieId = request.GET.get("id")
+            newReview = models.Review(reviewGrade=reviewGrade, reviewString=reviewString,
+                                      reviewedAuthor_id=request.session.get("userName"), reviewedMovie_id=movieId)
+            newReview.save()
 
     movieId = request.GET.get("id")
     m = models.Movie.objects.get(id=movieId)
     reviews = m.review_set.all().values()
     actors = m.actor_set.all().values()
     directors = m.director_set.all().values()
-    return render(request, 'login/movie.html', {"result": m, "reviews": reviews, "actors": actors, "directors": directors})
+    return render(request, 'login/movie.html',
+                  {"result": m, "reviews": reviews, "actors": actors, "directors": directors, "message": message})
 
 
 def actorList(request):
