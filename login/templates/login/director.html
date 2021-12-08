@@ -11,12 +11,12 @@
 
 <body>
 
-    <script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
+<script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
+<script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
 <div id="app" class="typo typo-selection">
-  <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
+    <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
-               <el-header>
+        <el-header>
                 <span>
                     <a href="/login">返回
                     <i class="el-icon-back el-icon--right"></i>
@@ -101,7 +101,19 @@
                 </div>
                 <div>
                     <h1>代表作</h1>
-                    <table>
+                    <div class="list">
+                        {% for line in movies %}
+
+                            <a class="item" href="/login/movie/?id={{ line.id }}">
+                                <div class="cover-wp">
+                                    <img src="{{ line.moviePhoto }}" alt="a photo">
+                                </div>
+                                <p>{{ line.movieName }}</p>
+                            </a>
+
+                        {% endfor %}
+                    </div>
+                    {% comment %}                    <table>
                         <thead>
                         <tr>
                             <th>电影名</th>
@@ -129,7 +141,7 @@
                         {% endfor %}
 
                         </tbody>
-                    </table>
+                    </table>{% endcomment %}
                 </div>
             </el-main>
         </el-container>

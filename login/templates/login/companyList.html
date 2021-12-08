@@ -77,8 +77,12 @@
                 <h1>公司列表</h1>
                 <form action="" method="post">
                     {% csrf_token %}
-                    <input type="text" name="companyName"/>
-                    <input type="submit" value="查询"/>
+                    <div class="inp">
+                        <input  size="22" maxlength="60" placeholder="搜索电影相关讯息" value autocomplete="off" type="text" name="companyName"/>
+                    </div>
+                    <div class="inp-btn">
+                        <input type="submit"  value=""/>
+                    </div>
                 </form>
                 <table>
                     <thead>

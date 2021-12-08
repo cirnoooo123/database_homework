@@ -74,11 +74,21 @@
                 </el-row>
             </el-aside>
             <el-main>
+                {% for line in styles %}
+                    <a class="label" href="/login/movieList/?type=queryStyle&style={{ line }}">
+                        <el-tag effect="dark">{{ line }}</el-tag>
+                    </a>
+                {% endfor %}
                 <h1>电影列表</h1>
                 <form action="" method="post">
                     {% csrf_token %}
-                    <input type="text" name="movieName"/>
-                    <input type="submit" value="查询"/>
+                    <div class="inp">
+                        <input size="22" maxlength="60" placeholder="搜索电影相关讯息" value autocomplete="off" type="text"
+                               name="movieName"/>
+                    </div>
+                    <div class="inp-btn">
+                        <input type="submit" value=""/>
+                    </div>
                 </form>
                 <div class="list">
                     {% for line in result %}
@@ -123,11 +133,6 @@
     </el-container>
 
 
-    {% for line in styles %}
-        <a href="/login/movieList/?type=queryStyle&style={{ line }}">
-            <ins>{{ line }}</ins>
-        </a>
-    {% endfor %}
 </div>
 
 <script>

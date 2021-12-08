@@ -80,7 +80,19 @@
                 <h5>公司地址: {{ result.companyAddr }}</h5>
                 <div>
                     <h1>代表作</h1>
-                    <table>
+                    <div class="list">
+                        {% for line in movies %}
+
+                            <a class="item" href="/login/movie/?id={{ line.id }}">
+                                <div class="cover-wp">
+                                    <img src="{{ line.moviePhoto }}" alt="a photo">
+                                </div>
+                                <p>{{ line.movieName }}</p>
+                            </a>
+
+                        {% endfor %}
+                    </div>
+                    {% comment %}                    <table>
                         <thead>
                         <tr>
                             <th>电影名</th>
@@ -108,7 +120,7 @@
                         {% endfor %}
 
                         </tbody>
-                    </table>
+                    </table>{% endcomment %}
                 </div>
             </el-main>
         </el-container>

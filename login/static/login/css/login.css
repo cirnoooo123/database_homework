@@ -156,8 +156,60 @@ img {
     overflow: hidden;
 }
 
+.inp {
+    float: left;
+    width: 470px;
+    height: 34px;
+    text-align: center;
+}
+
+.inp input {
+    text-align: left;
+    height: 30px;
+    width: 96%;
+    background: white;
+    padding-left: 10px;
+    outline: none;
+}
+
+.inp-btn {
+    position: relative;
+    left: -1px;
+    width: 37px;
+    height: 34px;
+    zoom: 1;
+    overflow: hidden;
+}
+
+input {
+    margin-right: 3px;
+}
+
+.inp-btn input {
+    height: 100%;
+    width: 100%;
+    /*padding: 35px 0 0 0;*/
+    /*color: transparent;*/
+    background: url(//img3.doubanio.com/dae/accounts/resources/d3e2921/movie/assets/nav_mv_bg.png?s=1) no-repeat 0 -40px;
+    background-image: url(//img3.doubanio.com/dae/accounts/resources/d3e2921/movie/assets/nav_mv_bg.png?s=1);
+    background-position-x: 0px;
+    background-position-y: -40px;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+}
+
 /*.cover-wp img {
     width: 135px;
+}*/
+
+/*.label {
+    height: 60px;
+    width: 40px;
 }*/
 
 img {
