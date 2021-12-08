@@ -60,7 +60,7 @@ form a {
 }
 
 .el-aside {
-    background-color: #D3DCE6;
+    /*background-color: #545c64;*/
     color: #333;
     text-align: center;
     line-height: 200px;
@@ -103,7 +103,7 @@ img {
 }
 
 #headline img {
-    width: 400px;
+    width: 135px;
 }
 
 #headline ul {
@@ -125,5 +125,13 @@ img {
 .commentout {
     border-color: #666666;
     border-style: solid;
+}
+
+/*.pic img {
+    width: 115px;
+}*/
+
+img {
+    width: 100%;
 }
 

@@ -12,43 +12,61 @@
 <body>
 
 
-    <script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
+<script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
+<script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
 <div id="app" class="typo typo-selection">
-  <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
-
-    <a href="/login/userPage/"><ins>个人页面</ins></a>
-
+    <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
         <el-header>
-            <el-dropdown>
-                    <span class="el-dropdown-link">我的订阅
+            <span class="el-dropdown-link">
+                <a href="/login/userPage/">我的订阅
                     <i class="el-icon-arrow-down el-icon--right"></i>
-                    </span>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>
-                        <a href="/login/movieList/" class="text-success">电影</a>
-                    </el-dropdown-item>
-                    <el-dropdown-item>
-                        <a href="/login/actorList/" class="text-success">演员</a>
-                    </el-dropdown-item>
-                    <el-dropdown-item>
-                        <a href="/login/directorList/" class="text-success">导演</a>
-                    </el-dropdown-item>
-                    <el-dropdown-item>
-                        <a href="/login/companyList/" class="text-success">公司</a>
-                    </el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown>
-
+                </a>
+            </span>
+            /
             <span>欢迎  {{ request.session.userName }}  !</span>
+            /
             <a href="/login/logout/" class="text-success">
                 <ins>注销</ins>
             </a>
         </el-header>
 
         <el-container>
-            <el-aside width="200px">Aside</el-aside>
+            <el-aside width="200px">
+                <el-row class="tac">
+                    <el-menu
+                            default-active="1"
+                            class="el-menu-vertical-demo"
+                            @open="handleOpen"
+                            @close="handleClose">
+                        <el-menu-item index="1">
+                            <a href="/login/movieList/" class="text-success">
+                                <i class="el-icon-location"></i>
+                                <span slot="title">电影</span>
+                            </a>
+                        </el-menu-item>
+                        <el-menu-item index="2">
+                            <a href="/login/actorList/" class="text-success">
+                                <i class="el-icon-menu"></i>
+                                <span slot="title">演员</span>
+                            </a>
+                        </el-menu-item>
+                        <el-menu-item index="3">
+                            <a href="/login/directorList/" class="text-success">
+                                <i class="el-icon-document"></i>
+                                <span slot="title">导演</span>
+                            </a>
+                        </el-menu-item>
+                        <el-menu-item index="4">
+                            <a href="/login/companyList/" class="text-success">
+                                <i class="el-icon-setting"></i>
+                                <span slot="title">公司</span>
+                            </a>
+                        </el-menu-item>
+                    </el-menu>
+                    </el-col>
+                </el-row>
+            </el-aside>
             <el-main>
 
                 <div>
@@ -74,7 +92,7 @@
                                 <td>{{ line.movieDate }}</td>
                                 <td>{{ line.movieStyle }}</td>
                                 <td>{{ line.movieWard }}</td>
-                                <td><img src="{{  line.moviePhoto }}" alt=""></td>
+                                <td><img src="{{ line.moviePhoto }}" alt=""></td>
                             </tr>
                         {% endfor %}
                         </tbody>
