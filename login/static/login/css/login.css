@@ -131,6 +131,35 @@ img {
     width: 115px;
 }*/
 
+.list {
+    width: 1000px;
+    overflow: auto;
+}
+
+.item {
+    font-size: 13px;
+    text-align: center;
+    margin: 0 25px 10px 0;
+    width: 150px;
+    float: left;
+}
+
+.item p {
+    margin: 5px 0 0;
+    height: 44px;
+    overflow: hidden;
+}
+
+.cover-wp {
+    position: relative;
+    height: 210px;
+    overflow: hidden;
+}
+
+/*.cover-wp img {
+    width: 135px;
+}*/
+
 img {
     width: 100%;
 }

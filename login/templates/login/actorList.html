@@ -12,12 +12,12 @@
 <body>
 
 
-    <script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
+<script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
+<script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
 <div id="app" class="typo typo-selection">
-  <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
+    <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
-               <el-header>
+        <el-header>
                 <span>
                     <a href="/login">返回
                     <i class="el-icon-back el-icon--right"></i>
@@ -80,8 +80,20 @@
                     <input type="text" name="actorName"/>
                     <input type="submit" value="查询"/>
                 </form>
-                <table>
-                    <thead>
+{#                <table>#}
+                    <div class="list">
+                        {% for line in result %}
+
+                            <a class="item" href="/login/actor/?id={{ line.id }}">
+                                <div class="cover-wp">
+                                    <img src="{{ line.actorPhoto }}" alt="a photo">
+                                </div>
+                                <p>{{ line.actorName }}</p>
+                            </a>
+
+                        {% endfor %}
+                    </div>
+                    {% comment %}                    <thead>
                     <tr>
                         <th>姓名</th>
                         <th>年龄</th>
@@ -90,6 +102,7 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     {% for line in result %}
                         <tr>
                             <td>
@@ -103,7 +116,7 @@
                         </tr>
                     {% endfor %}
                     </tbody>
-                </table>
+                </table>{% endcomment %}
             </el-main>
         </el-container>
     </el-container>

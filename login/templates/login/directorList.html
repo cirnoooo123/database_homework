@@ -80,7 +80,19 @@
                     <input type="text" name="directorName"/>
                     <input type="submit" value="查询"/>
                 </form>
-                <table>
+                <div class="list">
+                    {% for line in result %}
+
+                <a class="item" href="/login/director/?id={{ line.id }}">
+                <div class="cover-wp">
+                    <img src="{{ line.directorPhoto }}" alt="a photo">
+                </div>
+                <p>{{ line.directorName }}</p>
+                </a>
+
+                    {% endfor %}
+                </div>
+{% comment %}                <table>
                     <thead>
                     <tr>
                         <th>姓名</th>
@@ -103,7 +115,7 @@
                         </tr>
                     {% endfor %}
                     </tbody>
-                </table>
+                </table>{% endcomment %}
             </el-main>
         </el-container>
     </el-container>
