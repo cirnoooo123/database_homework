@@ -79,6 +79,9 @@
                         <el-tag effect="dark">{{ line }}</el-tag>
                     </a>
                 {% endfor %}
+                <a class="label" href="/login/movieList/?type=orderBy&style=date">
+                        <el-tag effect="dark">新到旧</el-tag>
+                    </a>
                 <h1>电影列表</h1>
                 <form action="" method="post">
                     {% csrf_token %}

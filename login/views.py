@@ -117,6 +117,10 @@ def movieList(request):
     if request.GET.get("type") == "queryStyle":
         movies = models.Movie.objects.filter(movieStyle__contains=request.GET.get("style"))
         return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
+
+    if request.GET.get("type") == "orderBy":
+        movies = models.Movie.objects.all().order_by("-movieDate").values()
+        return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
     return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
 
 
