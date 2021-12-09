@@ -81,7 +81,8 @@
                         <input  size="22" maxlength="60" placeholder="搜索电影相关讯息" value autocomplete="off" type="text" name="actorName"/>
                     </div>
                     <div class="inp-btn">
-                        <input type="submit"  value=""/>
+{#                        <input type="submit"  value=""/>#}
+                          <el-button icon="el-icon-search" circle></el-button>
                     </div>
                 </form>
 {#                <table>#}
@@ -97,30 +98,7 @@
 
                         {% endfor %}
                     </div>
-                    {% comment %}                    <thead>
-                    <tr>
-                        <th>姓名</th>
-                        <th>年龄</th>
-                        <th>出生地</th>
-                        <th>照片</th>
-                    </tr>
-                    </thead>
-                    <tbody>
 
-                    {% for line in result %}
-                        <tr>
-                            <td>
-                                <a href="/login/actor/?id={{ line.id }}">
-                                    <ins>{{ line.actorName }}</ins>
-                                </a>
-                            </td>
-                            <td>{{ line.actorAge }}</td>
-                            <td>{{ line.actorBir }}</td>
-                            <td><img src="{{ line.actorPhoto }}" alt=""></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>{% endcomment %}
             </el-main>
         </el-container>
     </el-container>
