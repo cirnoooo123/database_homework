@@ -11,12 +11,12 @@
 
 <body>
 
-    <script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
+<script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
+<script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
 <div id="app" class="typo typo-selection">
-  <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
+    <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
-               <el-header>
+        <el-header>
                 <span>
                     <a href="/login">返回
                     <i class="el-icon-back el-icon--right"></i>
@@ -116,7 +116,7 @@
                     </div>
                 </div>
                 <div class="subscribe">
-                                                    <p>介绍:{{ result.movieIntroduction }}</p>
+                    <p>介绍:{{ result.movieIntroduction }}</p>
                     <a href="/login/movie/?type=loveMovie&id={{ result.id }}">
                         <el-button type="success" icon="el-icon-check">订阅</el-button>
                     </a>
@@ -131,21 +131,48 @@
                         {% endif %}
                         <form action="" method="post">
                             {% csrf_token %}
-                            <label for="reviewGrade">请打分：</label>
-                            <input type="text" name="reviewGrade" id="reviewGrade"/>
-                            <label for="reviewString">请评论：</label>
-                            <input type="text" name="reviewString" id="reviewString"/>
-                            <input type="submit" value="提交"/>
+
+                            <label for="reviewGrade"></label>
+                            <input type="number" placeholder="请打分，分数为0-5" name="reviewGrade"
+                                   id="reviewGrade"></el-input>
+                            <div style="margin-top: 15px;">
+                                <label for="reviewString"></label>
+                                <input type="text" placeholder="请输入评论内容" name="reviewString" id="reviewString"/>
+                            </div>
+                            <div style="margin-top: 15px;">
+{#                                <input type="submit" value="提交"/>#}
+                                <el-button type="primary">发布<i class="el-icon-upload el-icon--right"></i></el-button>
+                            </div>
                         </form>
                     </div>
+
                     {% for line in reviews %}
-                        <div class="commentout">
+                        <div class="comment-item">
+                            <div class="comment">
+                                <p>
+                                    <span class="comment-info">
+                               {{ line.reviewedAuthor_id }}
+                                <span>看过/打分：</span>
+                               {{ line.reviewGrade }}
+                                <span class="comment-time">
+                                   {{ line.reviewDate }}
+                                </span>
+                                 </span>
+                                </p>
+                                <p class="comment-content">
+                                    <span class="short">
+                                        {{ line.reviewString }}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        {% comment %}                        <div class="commentout">
                             <h5>评论者:{{ line.reviewedAuthor_id }}</h5>
                             <h5>评论日期:{{ line.reviewDate }}</h5>
                             <h5>打分:{{ line.reviewGrade }}</h5>
                             <h5>评论内容:</h5>
                             <p>{{ line.reviewString }}</p>
-                        </div>
+                        </div>{% endcomment %}
                     {% endfor %}
                 </div>
             </el-main>
