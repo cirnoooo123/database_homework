@@ -71,32 +71,79 @@ def logout(request):
     return redirect("/login/login")
 
 
+def recMovie(name):
+    movies = []
+    style = {}
+    for var in models.WebUser.objects.get(username=name).loveMovies.all():
+        if var.movieStyle in style.keys():
+            style[var.movieStyle] = style[var.movieStyle] + 1
+        else:
+            style[var.movieStyle] = 1
+    if len(style) == 0:
+        last = models.Movie.objects.count() - 1
+        for i in range(5):
+            index1 = random.randint(0, last)
+            movies.append(models.Movie.objects.all()[index1])
+        return movies
+    elif len(style) == 1:
+        for var in style.keys():
+            movies1 = models.Movie.objects.filter(movieStyle__contains=var)
+            last = movies1.count() - 1
+            for i in range(3):
+                index1 = random.randint(0, last)
+                movies.append(movies1[index1])
+        last = models.Movie.objects.count() - 1
+        for i in range(2):
+            index1 = random.randint(0, last)
+            movies.append(models.Movie.objects.all()[index1])
+        return movies
+    else:
+        first = 0
+        firstStyle = None
+        for var in style.keys():
+            if style[var] > first:
+                first = style[var]
+                firstStyle = var
+
+        second = 0
+        secondStyle = None
+        for var in style.keys():
+            if style[var] > second and var != firstStyle:
+                second = style[var]
+                secondStyle = var
+        movies1 = models.Movie.objects.filter(movieStyle__contains=firstStyle)
+        last = movies1.count() - 1
+        for i in range(3):
+            index1 = random.randint(0, last)
+            movies.append(movies1[index1])
+        movies1 = models.Movie.objects.filter(movieStyle__contains=secondStyle)
+        last = movies1.count() - 1
+        for i in range(2):
+            index1 = random.randint(0, last)
+            movies.append(movies1[index1])
+        return movies
+
+
 def index(request):
 
     if request.session.get("userName") is None:
         return redirect("/login/login/")
     result = {}
 
-    last = models.Movie.objects.count() - 1
-    index1 = random.randint(0, last)
-    index2 = random.randint(0, last)
-    if index2 == index1:
-        index2 = last
-    movies2 = [models.Movie.objects.all()[index1], models.Movie.objects.all()[index2]]
+    movies2 = recMovie(request.session['userName'])
 
+
+    actors2 = []
     last = models.Actor.objects.count() - 1
-    index1 = random.randint(0, last)
-    index2 = random.randint(0, last)
-    if index2 == index1:
-        index2 = last
-    actors2 = [models.Actor.objects.all()[index1], models.Actor.objects.all()[index2]]
+    for i in range(5):
+        index = random.randint(0, last)
+        actors2.append(models.Actor.objects.all()[index])
 
     last = models.Director.objects.count() - 1
-    index1 = random.randint(0, last)
-    index2 = random.randint(0, last)
-    if index2 == index1:
-        index2 = last
-    directors2 = [models.Director.objects.all()[index1], models.Director.objects.all()[index2]]
+    directors2 = []
+    for i in range(5):
+        index = random.randint(0, last)
+        directors2.append(models.Director.objects.all()[index])
 
     result["recMovies"] = movies2
     result["recActors"] = actors2
@@ -105,6 +152,8 @@ def index(request):
 
 
 def movieList(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     styleSet = set()
     movies = models.Movie.objects.all().values()
     for var in movies:
@@ -128,6 +177,8 @@ def movieList(request):
 
 
 def movie(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     message = ""
     if request.GET.get("type") == "loveMovie":
         userName = request.session.get("userName")
@@ -169,6 +220,8 @@ def movie(request):
 
 
 def actorList(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     if request.method == 'POST':
         actorName = request.POST.get("actorName")
         actors = models.Actor.objects.filter(actorName__contains=actorName).values()
@@ -180,6 +233,8 @@ def actorList(request):
 
 
 def actor(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     if request.GET.get("type") == "loveActor":
         userName = request.session.get("userName")
         actorId = request.GET.get("id")
@@ -203,6 +258,8 @@ def actor(request):
 
 
 def directorList(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     if request.method == 'POST':
         directorName = request.POST.get("directorName")
         directors = models.Director.objects.filter(directorName__contains=directorName).values()
@@ -212,6 +269,8 @@ def directorList(request):
 
 
 def director(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     if request.GET.get("type") == "loveDirector":
         userName = request.session.get("userName")
         directorId = request.GET.get("id")
@@ -234,6 +293,8 @@ def director(request):
 
 
 def companyList(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     if request.method == 'POST':
         companyName = request.POST.get("companyName")
         companys = models.Company.objects.filter(companyName__contains=companyName).values()
@@ -243,6 +304,8 @@ def companyList(request):
 
 
 def company(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     companyId = request.GET.get("id")
     m = models.Company.objects.get(id=companyId)
     movies = m.movie_set.all().values()
@@ -250,6 +313,8 @@ def company(request):
 
 
 def userPage(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     if request.GET.get("type") == "deleteReview":
         deletingReview = models.Review.objects.get(id=request.GET.get("reviewId"))
         models.Review.delete(deletingReview)
