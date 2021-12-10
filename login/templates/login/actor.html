@@ -93,10 +93,10 @@
                 </div>
                 <div class="subscribe">
                     <a href="/login/actor/?type=loveActor&id={{ result.id }}">
-                        <el-button type="success" icon="el-icon-check">订阅</el-button>
+                        <el-button @click="success" type="success" icon="el-icon-check">订阅</el-button>
                     </a>
                     <a href="/login/actor/?type=deLoveActor&id={{ result.id }}">
-                        <el-button type="warning" icon="el-icon-close">退订</el-button>
+                        <el-button @click="error" type="warning" icon="el-icon-close">退订</el-button>
                     </a>
                 </div>
                 <div>
@@ -151,7 +151,28 @@
 </div>
 
 <script>
-    new Vue().$mount('#app')
+    var Main= {
+        methods: {
+            success() {
+                this.$notify({
+                    title: '成功',
+                    message: '你已成功收藏',
+                    type: 'success'
+                });
+            },
+
+            error() {
+                this.$notify({
+                    title: '取消',
+                    message: '你已取消收藏',
+                    type: 'warning'
+                });
+            }
+        }
+    }
+        var Ctor=Vue.extend(Main)
+        new Ctor().$mount('#app')
 </script>
+
 </body>
 </html>

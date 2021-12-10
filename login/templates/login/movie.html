@@ -141,7 +141,7 @@
                             </div>
                             <div style="margin-top: 15px;">
                                 <input type="submit" value="提交"/>
-{#                                <el-button type="primary">发布<i class="el-icon-upload el-icon--right"></i></el-button>#}
+                                {#                                <el-button type="primary">发布<i class="el-icon-upload el-icon--right"></i></el-button>#}
                             </div>
                         </form>
                     </div>
@@ -177,6 +177,12 @@
 
 <script>
     new Vue().$mount('#app')
+</script>
+
+<script>
+    {% if message %}
+        alert("{{ message }}");
+    {% endif %}
 </script>
 
 
