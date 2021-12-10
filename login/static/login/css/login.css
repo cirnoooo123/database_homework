@@ -256,3 +256,50 @@ img {
     font-size: 13px;
 }
 
+.el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+}
+
+/*.carimg {*/
+/*    !*max-width: 100%;*!*/
+/*}*/
+
+.el-carousel__item:nth-child(4n) {
+        background-image: url('../image/movie1.jpg');
+}
+.el-carousel__item:nth-child(4n+1) {
+        background-image: url('../image/movie2.jpg');
+}
+.el-carousel__item:nth-child(4n+2) {
+        background-image: url('../image/movie3.jpg');
+}
+.el-carousel__item:nth-child(4n+3) {
+        background-image: url('../image/movie4.jpg');
+}
+
+.block {
+    display:inline-block;
+    width: 400px;
+    /*height: 580px;*/
+}
+
+.indexinfo {
+    display: inline-block;
+    width: 400px;
+    margin-left: 20px;
+    vertical-align: top;
+    /*height: 580px;*/
+}
+
+.wholeblock {
+    /*overflow: hidden;*/
+}
+
+/*.middle {
+    max-width: 1400px;
+    margin: 0 auto;
+}*/
