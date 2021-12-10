@@ -129,9 +129,53 @@
                         </div>
                     </div>
 
-                    <div>
-                        {#                                            <img class="carimg" src="{% static "login/image/movie1.jpg" %}"/>#}
-                        <h1>电影推荐</h1>
+                    {#                    <div>#}
+                    {#                                            <img class="carimg" src="{% static "login/image/movie1.jpg" %}"/>#}
+
+                    <h2 class="ipc-title">猜你喜欢</h2>
+                    <div class="list">
+                        {% for line in recMovies %}
+
+                            <a class="item" href="/login/movie/?id={{ line.id }}">
+                                <div class="cover-wp">
+                                    <img src="{{ line.moviePhoto }}" alt="a photo">
+                                </div>
+                                <p>{{ line.movieName }}</p>
+                            </a>
+
+                        {% endfor %}
+                    </div>
+
+                    <h2 class="ipc-title">演员推荐</h2>
+                    <div class="list">
+                        {% for line in recActors %}
+
+                            <a class="item" href="/login/actor/?id={{ line.id }}">
+                                <div class="cover-wp">
+                                    <img src="{{ line.actorPhoto }}" alt="a photo">
+                                </div>
+                                <p>{{ line.actorName }}</p>
+                            </a>
+
+                        {% endfor %}
+                    </div>
+
+                    <h2 class="ipc-title">导演推荐</h2>
+                    <div class="list">
+                        {% for line in recDirectors %}
+
+                            <a class="item" href="/login/director/?id={{ line.id }}">
+                                <div class="cover-wp">
+                                    <img src="{{ line.directorPhoto }}" alt="a photo">
+                                </div>
+                                <p>{{ line.directorName }}</p>
+                            </a>
+
+                        {% endfor %}
+                    </div>
+
+
+                    {% comment %} <h1>电影推荐</h1>
                         <table>
                             <thead>
                             <tr>
@@ -158,62 +202,62 @@
                             {% endfor %}
                             </tbody>
                         </table>
-                    </div>
+                    </div>{% endcomment %}
 
-                    <div>
-                        <h1>演员推荐</h1>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>姓名</th>
-                                <th>出生日期</th>
-                                <th>出生地</th>
-                                <th>照片</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for line in recActors %}
-                                <tr>
-                                    <td>
-                                        <a href="/login/actor/?id={{ line.id }}">
-                                            <ins>{{ line.actorName }}</ins>
-                                        </a>
-                                    </td>
-                                    <td>{{ line.actorAge }}</td>
-                                    <td>{{ line.actorBir }}</td>
-                                    <td><img src="{{ line.actorPhoto }}" alt=""></td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                        <h1>导演推荐</h1>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>姓名</th>
-                                <th>出生日期</th>
-                                <th>出生地</th>
-                                <th>照片</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for line in recDirectors %}
-                                <tr>
-                                    <td>
-                                        <a href="/login/director/?id={{ line.id }}">
-                                            <ins>{{ line.directorName }}</ins>
-                                        </a>
-                                    </td>
-                                    <td>{{ line.directorAge }}</td>
-                                    <td>{{ line.directorBir }}</td>
-                                    <td><img src="{{ line.directorPhoto }}" alt=""></td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+{#                    <div>#}
+{#                        <h1>演员推荐</h1>#}
+{#                        <table>#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th>姓名</th>#}
+{#                                <th>出生日期</th>#}
+{#                                <th>出生地</th>#}
+{#                                <th>照片</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            {% for line in recActors %}#}
+{#                                <tr>#}
+{#                                    <td>#}
+{#                                        <a href="/login/actor/?id={{ line.id }}">#}
+{#                                            <ins>{{ line.actorName }}</ins>#}
+{#                                        </a>#}
+{#                                    </td>#}
+{#                                    <td>{{ line.actorAge }}</td>#}
+{#                                    <td>{{ line.actorBir }}</td>#}
+{#                                    <td><img src="{{ line.actorPhoto }}" alt=""></td>#}
+{#                                </tr>#}
+{#                            {% endfor %}#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                    <div>#}
+{#                        <h1>导演推荐</h1>#}
+{#                        <table>#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th>姓名</th>#}
+{#                                <th>出生日期</th>#}
+{#                                <th>出生地</th>#}
+{#                                <th>照片</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            {% for line in recDirectors %}#}
+{#                                <tr>#}
+{#                                    <td>#}
+{#                                        <a href="/login/director/?id={{ line.id }}">#}
+{#                                            <ins>{{ line.directorName }}</ins>#}
+{#                                        </a>#}
+{#                                    </td>#}
+{#                                    <td>{{ line.directorAge }}</td>#}
+{#                                    <td>{{ line.directorBir }}</td>#}
+{#                                    <td><img src="{{ line.directorPhoto }}" alt=""></td>#}
+{#                                </tr>#}
+{#                            {% endfor %}#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
                 </div>
             </el-main>
         </el-container>

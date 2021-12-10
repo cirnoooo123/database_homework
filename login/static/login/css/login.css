@@ -294,12 +294,16 @@ img {
     vertical-align: top;
     /*height: 580px;*/
 }
+.ipc-title {
+    color: #f5c518;
+    border-bottom: 1px solid black;
+}
 
 .wholeblock {
     /*overflow: hidden;*/
 }
 
-/*.middle {
-    max-width: 1400px;
+.middle {
+    max-width: 850px;
     margin: 0 auto;
-}*/
+}
