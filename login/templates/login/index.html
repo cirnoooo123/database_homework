@@ -32,126 +32,162 @@
         </el-header>
 
         <el-container>
-            <el-aside width="200px">
-                <el-row class="tac">
-                    <el-menu
-                            default-active="1"
-                            class="el-menu-vertical-demo"
-                            @open="handleOpen"
-                            @close="handleClose">
-                        <el-menu-item index="1">
-                            <a href="/login/movieList/" class="text-success">
-                                <i class="el-icon-location"></i>
-                                <span slot="title">电影</span>
-                            </a>
-                        </el-menu-item>
-                        <el-menu-item index="2">
-                            <a href="/login/actorList/" class="text-success">
-                                <i class="el-icon-menu"></i>
-                                <span slot="title">演员</span>
-                            </a>
-                        </el-menu-item>
-                        <el-menu-item index="3">
-                            <a href="/login/directorList/" class="text-success">
-                                <i class="el-icon-document"></i>
-                                <span slot="title">导演</span>
-                            </a>
-                        </el-menu-item>
-                        <el-menu-item index="4">
-                            <a href="/login/companyList/" class="text-success">
-                                <i class="el-icon-setting"></i>
-                                <span slot="title">公司</span>
-                            </a>
-                        </el-menu-item>
-                    </el-menu>
-                    </el-col>
-                </el-row>
-            </el-aside>
+
             <el-main>
+                <div class="middle">
+                    <div>
+                        {% comment %}                   <div class="block">
+                                        <span class="demonstration">默认 Hover 指示器触发</span>
+                    <el-carousel height="300px">
+                        <el-carousel-item v-for="item in 4" :key="item">
+                                                        <h3 class="small"></h3>
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>{% endcomment %}
 
-                <div>
-                    <h1>电影推荐</h1>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>电影名</th>
-                            <th>上映日期</th>
-                            <th>风格</th>
-                            <th>获奖</th>
-                            <th>封面</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for line in recMovies %}
-                            <tr>
-                                <td>
-                                    <a href="/login/movie/?id={{ line.id }}">
-                                        <ins>{{ line.movieName }}</ins>
+                        <div class="block">
+                            {#                    <span class="demonstration">默认 Hover 指示器触发</span>#}
+                            <el-carousel height="580px">
+                                <el-carousel-item>
+                                    <img class="carimg" src="{% static "login/image/movie1.jpg" %}"/>
+                                    {#                            <h3 class="small"></h3>#}
+                                </el-carousel-item>
+                                <el-carousel-item>
+                                    <img class="carimg" src="{% static "login/image/movie2.jpg" %}"/>
+                                    {#                            <h3 class="small"></h3>#}
+                                </el-carousel-item>
+                                <el-carousel-item>
+                                    <img class="carimg" src="{% static "login/image/movie3.jpg" %}"/>
+                                    {#                            <h3 class="small"></h3>#}
+                                </el-carousel-item>
+                                <el-carousel-item>
+                                    <img class="carimg" src="{% static "login/image/movie4.jpg" %}"/>
+                                    {#                            <h3 class="small"></h3>#}
+                                </el-carousel-item>
+                            </el-carousel>
+                        </div>
+                        <div class="indexinfo">
+                            <h1>光影之下——电影资讯网站</h1>
+                            <h5>获取电影最新信息资讯，可以点击如下模块</h5>
+                            <h5>电影：</h5>
+                            <p>
+                                <a class="label" href="/login/movieList/">
+                                    <el-tag type="success" effect="dark">电影</el-tag>
+                                </a>
+                            </p>
+                            <p>
+                                {% for line in styles %}
+                                    <a class="label" href="/login/movieList/?type=queryStyle&style={{ line }}">
+                                        <el-tag effect="dark">{{ line }}</el-tag>
                                     </a>
-                                </td>
-                                <td>{{ line.movieDate }}</td>
-                                <td>{{ line.movieStyle }}</td>
-                                <td>{{ line.movieWard }}</td>
-                                <td><img src="{{ line.moviePhoto }}" alt=""></td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                                {% endfor %}
+                            </p>
+                            <h5>演员：</h5>
+                            <p>
+                                <a class="label" href="/login/movieList/">
+                                    <el-tag type="info" effect="dark">演员</el-tag>
+                                </a>
+                            </p>
+                            <h5>导演：</h5>
+                            <p>
+                                <a class="label" href="/login/movieList/">
+                                    <el-tag type="warning" effect="dark">导演</el-tag>
+                                </a>
+                            </p>
+                            <h5>电影公司：</h5>
+                            <p>
+                                <a class="label" href="/login/movieList/">
+                                    <el-tag type="danger" effect="dark">公司</el-tag>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
 
-                <div>
-                    <h1>演员推荐</h1>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>姓名</th>
-                            <th>出生日期</th>
-                            <th>出生地</th>
-                            <th>照片</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for line in recActors %}
+                    <div>
+                        {#                                            <img class="carimg" src="{% static "login/image/movie1.jpg" %}"/>#}
+                        <h1>电影推荐</h1>
+                        <table>
+                            <thead>
                             <tr>
-                                <td>
-                                    <a href="/login/actor/?id={{ line.id }}">
-                                        <ins>{{ line.actorName }}</ins>
-                                    </a>
-                                </td>
-                                <td>{{ line.actorAge }}</td>
-                                <td>{{ line.actorBir }}</td>
-                                <td><img src="{{ line.actorPhoto }}" alt=""></td>
+                                <th>电影名</th>
+                                <th>上映日期</th>
+                                <th>风格</th>
+                                <th>获奖</th>
+                                <th>封面</th>
                             </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <h1>导演推荐</h1>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>姓名</th>
-                            <th>出生日期</th>
-                            <th>出生地</th>
-                            <th>照片</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for line in recDirectors %}
+                            </thead>
+                            <tbody>
+                            {% for line in recMovies %}
+                                <tr>
+                                    <td>
+                                        <a href="/login/movie/?id={{ line.id }}">
+                                            <ins>{{ line.movieName }}</ins>
+                                        </a>
+                                    </td>
+                                    <td>{{ line.movieDate }}</td>
+                                    <td>{{ line.movieStyle }}</td>
+                                    <td>{{ line.movieWard }}</td>
+                                    <td><img src="{{ line.moviePhoto }}" alt=""></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div>
+                        <h1>演员推荐</h1>
+                        <table>
+                            <thead>
                             <tr>
-                                <td>
-                                    <a href="/login/director/?id={{ line.id }}">
-                                        <ins>{{ line.directorName }}</ins>
-                                    </a>
-                                </td>
-                                <td>{{ line.directorAge }}</td>
-                                <td>{{ line.directorBir }}</td>
-                                <td><img src="{{ line.directorPhoto }}" alt=""></td>
+                                <th>姓名</th>
+                                <th>出生日期</th>
+                                <th>出生地</th>
+                                <th>照片</th>
                             </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {% for line in recActors %}
+                                <tr>
+                                    <td>
+                                        <a href="/login/actor/?id={{ line.id }}">
+                                            <ins>{{ line.actorName }}</ins>
+                                        </a>
+                                    </td>
+                                    <td>{{ line.actorAge }}</td>
+                                    <td>{{ line.actorBir }}</td>
+                                    <td><img src="{{ line.actorPhoto }}" alt=""></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h1>导演推荐</h1>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>出生日期</th>
+                                <th>出生地</th>
+                                <th>照片</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for line in recDirectors %}
+                                <tr>
+                                    <td>
+                                        <a href="/login/director/?id={{ line.id }}">
+                                            <ins>{{ line.directorName }}</ins>
+                                        </a>
+                                    </td>
+                                    <td>{{ line.directorAge }}</td>
+                                    <td>{{ line.directorBir }}</td>
+                                    <td><img src="{{ line.directorPhoto }}" alt=""></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </el-main>
         </el-container>
