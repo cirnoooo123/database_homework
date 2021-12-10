@@ -18,7 +18,7 @@ from django.db import models
 
 class WebUser(models.Model):
     username = models.CharField(max_length=32, primary_key=True)
-    upwd = models.CharField(max_length=18)
+    upwd = models.CharField(max_length=100)
     loveMovies = models.ManyToManyField("Movie")
     loveDirectors = models.ManyToManyField("Director")
     loveActors = models.ManyToManyField("Actor")

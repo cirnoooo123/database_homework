@@ -1,10 +1,10 @@
 import random
 
-from django.forms import model_to_dict
 from django.shortcuts import render
 from django.shortcuts import redirect
 from . import models
 from . import forms
+from django.contrib.auth.hashers import make_password, check_password
 
 
 # Create your views here.
@@ -27,7 +27,7 @@ def login(request):
             except:
                 message = '用户不存在！'
                 return render(request, 'login/login.html', locals())
-            if user.upwd == password:
+            if check_password(password,user.upwd):
                 request.session['isLogin'] = True
                 request.session['userName'] = username
                 return redirect('/login/')
@@ -56,7 +56,8 @@ def register(request):
                 message = '密码输入不一致！'
                 return render(request, 'login/register.html', locals())
             else:
-                user = models.WebUser(username=username, upwd=password1)
+                user = models.WebUser(username=username, upwd=make_password(password1))
+                print(make_password(password1))
                 user.save()
                 message = '注册成功！'
                 return redirect("/login/login/")
@@ -71,7 +72,9 @@ def logout(request):
 
 
 def index(request):
-    user = models.WebUser.objects.get(username=request.session.get("userName"))
+
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
     result = {}
 
     last = models.Movie.objects.count() - 1
