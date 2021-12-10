@@ -132,7 +132,6 @@ def index(request):
 
     movies2 = recMovie(request.session['userName'])
 
-
     actors2 = []
     last = models.Actor.objects.count() - 1
     for i in range(5):
@@ -145,9 +144,17 @@ def index(request):
         index = random.randint(0, last)
         directors2.append(models.Director.objects.all()[index])
 
+    styleSet = set()
+    movies = models.Movie.objects.all().values()
+    for var in movies:
+        s = var.get("movieStyle").split(" ")
+        for style in s:
+            styleSet.add(style)
+
     result["recMovies"] = movies2
     result["recActors"] = actors2
     result["recDirectors"] = directors2
+    result["styles"] = styleSet
     return render(request, 'login/index.html', result)
 
 
