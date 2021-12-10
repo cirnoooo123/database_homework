@@ -16,11 +16,11 @@
 <script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
 <div id="app" class="typo typo-selection">
 
-    {% for line in styles %}
+    {% comment %}    {% for line in styles %}
                     <a class="label" href="/login/movieList/?type=queryStyle&style={{ line }}">
                         <el-tag effect="dark">{{ line }}</el-tag>
                     </a>
-                {% endfor %}
+                {% endfor %}{% endcomment %}
 
     <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
@@ -76,12 +76,12 @@
                         <div class="indexinfo">
                             <h1>光影之下——电影资讯网站</h1>
                             <h5>获取电影最新信息资讯，可以点击如下模块</h5>
-                            <h5>电影：</h5>
-                            <p>
+                            <h5>电影：
                                 <a class="label" href="/login/movieList/">
-                                    <el-tag type="success" effect="dark">电影</el-tag>
+                                    <el-button type="primary" round>演员</el-button>
                                 </a>
-                            </p>
+                            </h5>
+
                             <p>
                                 {% for line in styles %}
                                     <a class="label" href="/login/movieList/?type=queryStyle&style={{ line }}">
@@ -89,23 +89,42 @@
                                     </a>
                                 {% endfor %}
                             </p>
-                            <h5>演员：</h5>
-                            <p>
-                                <a class="label" href="/login/movieList/">
-                                    <el-tag type="info" effect="dark">演员</el-tag>
+                            <h5>演员：
+                                <a class="label" href="/login/actorList/">
+                                    <el-button type="success" round>演员</el-button>
                                 </a>
+                            </h5>
+                            <p>
+                                {% for line in styles %}
+                                    <a class="label" href="/login/movieList/?type=queryStyle&style={{ line }}">
+                                        <el-tag type="success" effect="dark">{{ line }}</el-tag>
+                                    </a>
+                                {% endfor %}
                             </p>
-                            <h5>导演：</h5>
-                            <p>
-                                <a class="label" href="/login/movieList/">
-                                    <el-tag type="warning" effect="dark">导演</el-tag>
+
+                            <h5>导演：
+                                <a class="label" href="/login/directorList/">
+                                    <el-button type="warning" round>导演</el-button>
                                 </a>
+                            </h5>
+                            <p>
+                                {% for line in styles %}
+                                    <a class="label" href="/login/movieList/?type=queryStyle&style={{ line }}">
+                                        <el-tag type="warning" effect="dark">{{ line }}</el-tag>
+                                    </a>
+                                {% endfor %}
                             </p>
-                            <h5>电影公司：</h5>
-                            <p>
-                                <a class="label" href="/login/movieList/">
-                                    <el-tag type="danger" effect="dark">公司</el-tag>
+                            <h5>公司：
+                                <a class="label" href="/login/companyList/">
+                                    <el-button type="danger" round>公司</el-button>
                                 </a>
+                            </h5>
+                            <p>
+                                {% for line in styles %}
+                                    <a class="label" href="/login/movieList/?type=queryStyle&style={{ line }}">
+                                        <el-tag type="danger" effect="dark">{{ line }}</el-tag>
+                                    </a>
+                                {% endfor %}
                             </p>
                         </div>
                     </div>
