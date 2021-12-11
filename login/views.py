@@ -41,11 +41,83 @@ def login(request):
     return render(request, 'login/login.html', locals())
 
 
+def userInfo(request):
+    username = request.session.get("userName")
+    result = models.WebUser.objects.get(username=username)
+    if request.method == 'POST':
+        if len(username) == 0:
+            message = "用户名不能为空"
+            return render(request, 'login/userInfo.html', {"result": result, "message": message})
+        name = request.POST.get("name")
+        if len(name) > 30:
+            message = "姓名过长"
+        age = request.POST.get("age")
+        if len(age) == 0:
+            age = 0
+        elif not str.isdigit(age) or len(age) > 4:
+            message = "请输入正确的年龄"
+            return render(request, 'login/userInfo.html', {"result": result, "message": message})
+        else:
+            age = int(age)
+        teleNum = request.POST.get("teleNum")
+        if len(teleNum) > 20:
+            message = "请输入正确的电话号码"
+            return render(request, 'login/userInfo.html', {"result": result, "message": message})
+        email = request.POST.get("email")
+        if len(email) > 40:
+            message = "请输入正确的邮箱地址"
+            return render(request, 'login/userInfo.html', {"result": result, "message": message})
+        job = request.POST.get("job")
+        if len(job) > 30:
+            message = "工作名过长"
+            return render(request, 'login/userInfo.html', {"result": result, "message": message})
+
+        else:
+            user = models.WebUser.objects.get(username=username)
+            user.name = name
+            user.age = age
+            user.teleNum = teleNum
+            user.email = email
+            user.job = job
+            user.save()
+            result = models.WebUser.objects.get(username=username)
+            message = '修改成功！'
+            return render(request, 'login/userInfo.html', {"result": result, "message": message})
+    return render(request, 'login/userInfo.html', {"result": result})
+
+
 def register(request):
     if request.method == 'POST':
         username = request.POST.get("username")
         password1 = request.POST.get("password1")
+        if len(password1) == 0:
+            message = "密码不能为空"
+            return render(request, 'login/register.html', locals())
         password2 = request.POST.get("password2")
+        name = request.POST.get("name")
+        if len(name) > 30:
+            message = "姓名过长"
+        age = request.POST.get("age")
+        if len(age) == 0:
+            age = 0
+        elif not str.isdigit(age) or len(age) > 4:
+            message = "请输入正确的年龄"
+            return render(request, 'login/register.html', locals())
+        else:
+            age = int(age)
+        teleNum = request.POST.get("teleNum")
+        if len(teleNum) > 20:
+            message = "请输入正确的电话号码"
+            return render(request, 'login/register.html', locals())
+        email = request.POST.get("email")
+        if len(email) > 40:
+            message = "请输入正确的邮箱地址"
+            return render(request, 'login/register.html', locals())
+        job = request.POST.get("job")
+        if len(job) > 30:
+            message = "工作名过长"
+            return render(request, 'login/register.html', locals())
+
         try:
             user = models.WebUser.objects.get(username=username)
             print(user.username)
@@ -56,7 +128,8 @@ def register(request):
                 message = '密码输入不一致！'
                 return render(request, 'login/register.html', locals())
             else:
-                user = models.WebUser(username=username, upwd=make_password(password1))
+                user = models.WebUser(username=username, upwd=make_password(password1),
+                                      name=name, age=age, teleNum=teleNum, email=email, job=job)
                 print(make_password(password1))
                 user.save()
                 message = '注册成功！'

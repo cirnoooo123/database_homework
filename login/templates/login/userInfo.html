@@ -14,49 +14,41 @@
 <body>
 <div class="container">
     <div class="col">
-        <form class="form-login" action="/login/register/" method="post">
+        <form class="form-login" action="/login/userInfo/" method="post">
             {% if message %}
                 <div class="alert alert-warning">{{ message }}</div>
             {% endif %}
             {% csrf_token %}
-            <h3 class="text-center">欢迎注册</h3>
+            <h3 class="text-center">个人信息</h3>
             <div class="form-group">
                 <label for="id_username">用户名：</label>
-                <input type="text" name='username' class="form-control" id="id_username">
-            </div>
-            <div class="form-group">
-                <label for="id_password">密码：</label>
-                <input type="password" name='password1' class="form-control" id="id_password">
-            </div>
-            <div class="form-group">
-                <label for="id_password">请重复输入密码：</label>
-                <input type="password" name='password2' class="form-control" id="id_password">
+                <a>{{ result.username }}</a>
             </div>
         <div class="form-group">
                 <label for="id_name">姓名：</label>
-                <input type="text" name='name' class="form-control" id="id_name">
+                <input type="text" name='name' class="form-control" id="id_name" value={{ result.name }}>
             </div>
         <div class="form-group">
                 <label for="id_age">年龄：</label>
-                <input type="text" name='age' class="form-control" id="id_age">
+                <input type="text" name='age' class="form-control" id="id_age" value={{ result.age }}>
             </div>
         <div class="form-group">
                 <label for="id_teleNum">电话号码：</label>
-                <input type="text" name='teleNum' class="form-control" id="id_teleNum">
+                <input type="text" name='teleNum' class="form-control" id="id_teleNum" value={{ result.teleNum }}>
             </div>
         <div class="form-group">
                 <label for="id_email">邮箱地址：</label>
-                <input type="text" name='email' class="form-control" id="id_email">
+                <input type="text" name='email' class="form-control" id="id_email" value={{ result.email }}>
             </div>
         <div class="form-group">
                 <label for="id_job">工作：</label>
-                <input type="text" name='job' class="form-control" id="id_job">
+                <input type="text" name='job' class="form-control" id="id_job" value={{ result.job }}>
             </div>
             <div>
-                <a href="/login/login/" class="text-success ">
-                    <ins>返回登录界面</ins>
+                <a href="/login/" class="text-success ">
+                    <ins>返回</ins>
                 </a>
-                <button type="submit" class="btn btn-primary float-right">注册</button>
+                <button type="submit" class="btn btn-primary float-right">确认修改</button>
             </div>
         </form>
     </div>
