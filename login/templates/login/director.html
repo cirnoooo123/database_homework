@@ -17,23 +17,44 @@
     <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
         <el-header>
-                <span>
-                    <a href="/login">返回主页
-                    <i class="el-icon-back el-icon--right"></i>
-                    </a>
+            <div class="head-right">
+                <span>欢迎  {{ request.session.userName }}  !</span>
+                /
+                <el-dropdown>
+                 <span class="el-dropdown-link">
+                    <img class="head-small" src="{% static "login/image/headimg.jpg" %}"/>
+
+                     <i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
-            /
-            <span class="el-dropdown-link">
-                <a href="/login/userPage/">我的订阅
-                    <i class="el-icon-arrow-down el-icon--right"></i>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item icon="el-icon-s-custom">
+                            <a href="/login/userPage/">个人页面
+                            </a>
+                        </el-dropdown-item>
+                        <el-dropdown-item icon="el-icon-more">
+                            <a href="/login/userInfo/" class="text-success">
+                                <ins>编辑信息</ins>
+                            </a>
+                        </el-dropdown-item>
+                        <el-dropdown-item icon="el-icon-error" divided>
+                            <a href="/login/logout/" class="text-success">
+                                <ins>注销</ins>
+                            </a>
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </div>
+
+            <form class="head-left" action="/login/allList/" method="post">
+                {% csrf_token %}
+                <a class="special-a" href="/login">
+                    <img class="head-middle" src="{% static "login/image/head3.jpg" %}"/>
                 </a>
-            </span>
-            /
-            <span>欢迎  {{ request.session.userName }}  !</span>
-            /
-            <a href="/login/logout/" class="text-success">
-                <ins>注销</ins>
-            </a>
+                {#                <img class="head-middle" src="{% static "login/image/head3.jpg" %}"/>#}
+                <input size="40" maxlength="60" class="mytxt" type="text" placeholder="搜索电影、演员、导演、影人" name="name"
+                       id="reviewGrade"/>
+                <el-button icon="el-icon-search" onclick="this.form.submit()" circle></el-button>
+            </form>
         </el-header>
 
         <el-container>

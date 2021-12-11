@@ -24,31 +24,60 @@
 
     <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
-        <form action="/login/allList/" method="post">
-                    {% csrf_token %}
-                    <div class="inp">
-                        <input  size="22" maxlength="60" placeholder="搜索相关讯息" value autocomplete="off" type="text" name="name"/>
-                    </div>
-                    <div class="inp-btn">
-                        <input type="submit"  value=""/>
-                    </div>
-                </form>
+
         <el-header>
 
-            <span class="el-dropdown-link">
-                <a href="/login/userPage/">我的订阅
+            <div class="head-right">
+                {% comment %}            <span class="el-dropdown-link">
+                <a href="/login/userPage/">个人页面
                     <i class="el-icon-arrow-down el-icon--right"></i>
                 </a>
-            </span>
-            /
-            <span>欢迎  {{ request.session.userName }}  !</span>
-            /
-            <a href="/login/userInfo/" class="text-success">
-                <ins>个人信息</ins>
-            </a>
-            <a href="/login/logout/" class="text-success">
-                <ins>注销</ins>
-            </a>
+            </span>{% endcomment %}
+
+                <span>欢迎  {{ request.session.userName }}  !</span>
+                /
+                {% comment %}                <a href="/login/userInfo/" class="text-success">
+                    <ins>编辑信息</ins>
+                </a>
+                <a href="/login/logout/" class="text-success">
+                    <ins>注销</ins>
+                </a>{% endcomment %}
+                <el-dropdown>
+                 <span class="el-dropdown-link">
+                    <img class="head-small" src="{% static "login/image/headimg.jpg" %}"/>
+
+                     <i class="el-icon-arrow-down el-icon--right"></i>
+                </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item icon="el-icon-s-custom">
+                            <a href="/login/userPage/">个人页面
+                            </a>
+                        </el-dropdown-item>
+                        <el-dropdown-item icon="el-icon-more">
+                            <a href="/login/userInfo/" class="text-success">
+                                <ins>编辑信息</ins>
+                            </a>
+                        </el-dropdown-item>
+                        <el-dropdown-item icon="el-icon-error" divided>
+                            <a href="/login/logout/" class="text-success">
+                                <ins>注销</ins>
+                            </a>
+                        </el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            </div>
+
+            <form class="head-left" action="/login/allList/" method="post">
+                {% csrf_token %}
+                <a class="special-a" href="/login">
+                    <img class="head-middle" src="{% static "login/image/head3.jpg" %}"/>
+                </a>
+                {#                <img class="head-middle" src="{% static "login/image/head3.jpg" %}"/>#}
+                <input size="40" maxlength="60" class="mytxt" type="text" placeholder="搜索电影、演员、导演、影人" name="name"
+                       id="reviewGrade"/>
+                <el-button icon="el-icon-search" onclick="this.form.submit()" circle></el-button>
+            </form>
+
         </el-header>
 
         <el-container>
@@ -217,60 +246,60 @@
                         </table>
                     </div>{% endcomment %}
 
-{#                    <div>#}
-{#                        <h1>演员推荐</h1>#}
-{#                        <table>#}
-{#                            <thead>#}
-{#                            <tr>#}
-{#                                <th>姓名</th>#}
-{#                                <th>出生日期</th>#}
-{#                                <th>出生地</th>#}
-{#                                <th>照片</th>#}
-{#                            </tr>#}
-{#                            </thead>#}
-{#                            <tbody>#}
-{#                            {% for line in recActors %}#}
-{#                                <tr>#}
-{#                                    <td>#}
-{#                                        <a href="/login/actor/?id={{ line.id }}">#}
-{#                                            <ins>{{ line.actorName }}</ins>#}
-{#                                        </a>#}
-{#                                    </td>#}
-{#                                    <td>{{ line.actorAge }}</td>#}
-{#                                    <td>{{ line.actorBir }}</td>#}
-{#                                    <td><img src="{{ line.actorPhoto }}" alt=""></td>#}
-{#                                </tr>#}
-{#                            {% endfor %}#}
-{#                            </tbody>#}
-{#                        </table>#}
-{#                    </div>#}
-{#                    <div>#}
-{#                        <h1>导演推荐</h1>#}
-{#                        <table>#}
-{#                            <thead>#}
-{#                            <tr>#}
-{#                                <th>姓名</th>#}
-{#                                <th>出生日期</th>#}
-{#                                <th>出生地</th>#}
-{#                                <th>照片</th>#}
-{#                            </tr>#}
-{#                            </thead>#}
-{#                            <tbody>#}
-{#                            {% for line in recDirectors %}#}
-{#                                <tr>#}
-{#                                    <td>#}
-{#                                        <a href="/login/director/?id={{ line.id }}">#}
-{#                                            <ins>{{ line.directorName }}</ins>#}
-{#                                        </a>#}
-{#                                    </td>#}
-{#                                    <td>{{ line.directorAge }}</td>#}
-{#                                    <td>{{ line.directorBir }}</td>#}
-{#                                    <td><img src="{{ line.directorPhoto }}" alt=""></td>#}
-{#                                </tr>#}
-{#                            {% endfor %}#}
-{#                            </tbody>#}
-{#                        </table>#}
-{#                    </div>#}
+                    {#                    <div>#}
+                    {#                        <h1>演员推荐</h1>#}
+                    {#                        <table>#}
+                    {#                            <thead>#}
+                    {#                            <tr>#}
+                    {#                                <th>姓名</th>#}
+                    {#                                <th>出生日期</th>#}
+                    {#                                <th>出生地</th>#}
+                    {#                                <th>照片</th>#}
+                    {#                            </tr>#}
+                    {#                            </thead>#}
+                    {#                            <tbody>#}
+                    {#                            {% for line in recActors %}#}
+                    {#                                <tr>#}
+                    {#                                    <td>#}
+                    {#                                        <a href="/login/actor/?id={{ line.id }}">#}
+                    {#                                            <ins>{{ line.actorName }}</ins>#}
+                    {#                                        </a>#}
+                    {#                                    </td>#}
+                    {#                                    <td>{{ line.actorAge }}</td>#}
+                    {#                                    <td>{{ line.actorBir }}</td>#}
+                    {#                                    <td><img src="{{ line.actorPhoto }}" alt=""></td>#}
+                    {#                                </tr>#}
+                    {#                            {% endfor %}#}
+                    {#                            </tbody>#}
+                    {#                        </table>#}
+                    {#                    </div>#}
+                    {#                    <div>#}
+                    {#                        <h1>导演推荐</h1>#}
+                    {#                        <table>#}
+                    {#                            <thead>#}
+                    {#                            <tr>#}
+                    {#                                <th>姓名</th>#}
+                    {#                                <th>出生日期</th>#}
+                    {#                                <th>出生地</th>#}
+                    {#                                <th>照片</th>#}
+                    {#                            </tr>#}
+                    {#                            </thead>#}
+                    {#                            <tbody>#}
+                    {#                            {% for line in recDirectors %}#}
+                    {#                                <tr>#}
+                    {#                                    <td>#}
+                    {#                                        <a href="/login/director/?id={{ line.id }}">#}
+                    {#                                            <ins>{{ line.directorName }}</ins>#}
+                    {#                                        </a>#}
+                    {#                                    </td>#}
+                    {#                                    <td>{{ line.directorAge }}</td>#}
+                    {#                                    <td>{{ line.directorBir }}</td>#}
+                    {#                                    <td><img src="{{ line.directorPhoto }}" alt=""></td>#}
+                    {#                                </tr>#}
+                    {#                            {% endfor %}#}
+                    {#                            </tbody>#}
+                    {#                        </table>#}
+                    {#                    </div>#}
                 </div>
             </el-main>
         </el-container>
