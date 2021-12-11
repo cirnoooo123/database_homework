@@ -122,7 +122,7 @@
                 <h1>我的影评</h1>
                 {% for line in reviews %}
                     <div class="comment-item">
-                    <h3>{{ line.reviewedMovie_name }}</h3>
+                        <h3>{{ line.reviewedMovie_name }}</h3>
                         <div class="comment">
                             <p>
                                     <span class="comment-info">
@@ -141,10 +141,10 @@
                             </p>
                             <p>
                                 <a href="/login/movie/?id={{ line.reviewedMovie_id }}">
-                                    <ins>查看电影详情</ins>
+                                    <el-button type="success" icon="el-icon-search">查看电影详情</el-button>
                                 </a>
                                 <a href="/login/userPage/?type=deleteReview&reviewId={{ line.id }}">
-                                    <ins>删除</ins>
+                                    <el-button @click="success" type="danger" icon="el-icon-delete">删除</el-button>
                                 </a>
                             </p>
                         </div>
@@ -157,7 +157,19 @@
 </div>
 
 <script>
-    new Vue().$mount('#app')
+    var Main = {
+        methods: {
+            success() {
+                alert("你已成功删除该影评")
+            },
+
+            error() {
+                alert("你已取消订阅")
+            }
+        }
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
 </script>
 </body>
 </html>

@@ -154,19 +154,11 @@
     var Main= {
         methods: {
             success() {
-                this.$notify({
-                    title: '成功',
-                    message: '你已成功收藏',
-                    type: 'success'
-                });
+                alert("你已成功订阅")
             },
 
             error() {
-                this.$notify({
-                    title: '取消',
-                    message: '你已取消收藏',
-                    type: 'warning'
-                });
+                alert("你已取消订阅")
             }
         }
     }

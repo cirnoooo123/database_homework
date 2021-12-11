@@ -118,10 +118,10 @@
                 <div class="subscribe">
                     <p>介绍:{{ result.movieIntroduction }}</p>
                     <a href="/login/movie/?type=loveMovie&id={{ result.id }}">
-                        <el-button type="success" icon="el-icon-check">订阅</el-button>
+                        <el-button @click="success" type="success" icon="el-icon-check">订阅</el-button>
                     </a>
                     <a href="/login/movie/?type=deLoveMovie&id={{ result.id }}">
-                        <el-button type="warning" icon="el-icon-close">退订</el-button>
+                        <el-button @click="error" type="warning" icon="el-icon-close">退订</el-button>
                     </a>
                 </div>
                 <div>
@@ -176,7 +176,19 @@
 
 
 <script>
-    new Vue().$mount('#app')
+    var Main= {
+        methods: {
+            success() {
+                alert("你已成功订阅")
+            },
+
+            error() {
+                alert("你已取消订阅")
+            }
+        }
+    }
+        var Ctor=Vue.extend(Main)
+        new Ctor().$mount('#app')
 </script>
 
 <script>

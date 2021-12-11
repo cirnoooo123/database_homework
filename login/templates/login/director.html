@@ -93,10 +93,10 @@
                 </div>
                 <div class="subscribe">
                     <a href="/login/director/?type=loveDirector&id={{ result.id }}">
-                        <el-button type="success" icon="el-icon-check">订阅</el-button>
+                        <el-button @click="success" type="success" icon="el-icon-check">订阅</el-button>
                     </a>
                     <a href="/login/director/?type=deLoveDirector&id={{ result.id }}">
-                        <el-button type="warning" icon="el-icon-close">退订</el-button>
+                        <el-button @click="error" type="warning" icon="el-icon-close">退订</el-button>
                     </a>
                 </div>
                 <div>
@@ -113,35 +113,7 @@
 
                         {% endfor %}
                     </div>
-                    {% comment %}                    <table>
-                        <thead>
-                        <tr>
-                            <th>电影名</th>
-                            <th>上映日期</th>
-                            <th>风格</th>
-                            <th>获奖</th>
-                            <th>制作成本</th>
-                            <th>封面</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for line in movies %}
-                            <tr>
-                                <td>
-                                    <a href="/login/movie/?id={{ line.id }}">
-                                        <ins>{{ line.movieName }}</ins>
-                                    </a>
-                                </td>
-                                <td>{{ line.movieDate }}</td>
-                                <td>{{ line.movieStyle }}</td>
-                                <td>{{ line.movieWard }}</td>
-                                <td>{{ line.movieCost }}</td>
-                                <td><img src="{{ line.moviePhoto }}" alt=""></td>
-                            </tr>
-                        {% endfor %}
 
-                        </tbody>
-                    </table>{% endcomment %}
                 </div>
             </el-main>
         </el-container>
@@ -150,7 +122,19 @@
 
 
 <script>
-    new Vue().$mount('#app')
+    var Main= {
+        methods: {
+            success() {
+                alert("你已成功订阅")
+            },
+
+            error() {
+                alert("你已取消订阅")
+            }
+        }
+    }
+        var Ctor=Vue.extend(Main)
+        new Ctor().$mount('#app')
 </script>
 
 

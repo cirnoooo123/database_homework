@@ -1,5 +1,6 @@
 import random
 
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from . import models
@@ -266,6 +267,7 @@ def movie(request):
         movieAdding = models.Movie.objects.get(id=movieId)
         user.loveMovies.add(movieAdding)
         return redirect("/login/movie?id=" + request.GET.get("id"))
+        # return HttpResponse("ok")
 
     elif request.GET.get("type") == "deLoveMovie":
         userName = request.session.get("userName")
