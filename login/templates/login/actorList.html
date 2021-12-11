@@ -74,6 +74,12 @@
                 </el-row>
             </el-aside>
             <el-main>
+            <a class="label" href="/login/actorList/?type=orderBy&style=date">
+                    <el-tag effect="dark">新到旧</el-tag>
+                </a>
+            <a class="label" href="/login/actorList/?type=orderBy&style=name">
+                    <el-tag effect="dark">名字排序</el-tag>
+                </a>
                 <h1>演员列表</h1>
                 <form action="" method="post">
                     {% csrf_token %}

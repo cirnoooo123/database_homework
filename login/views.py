@@ -251,8 +251,12 @@ def movieList(request):
         return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
 
     if request.GET.get("type") == "orderBy":
-        movies = models.Movie.objects.all().order_by("-movieDate").values()
-        return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
+        if request.GET.get("style") == "date":
+            movies = models.Movie.objects.all().order_by("-movieDate").values()
+            return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
+        elif request.GET.get("style") == "name":
+            movies = models.Movie.objects.all().order_by("movieName").values()
+            return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
     return render(request, 'login/movieList.html', {"result": movies, "styles": styleSet})
 
 
@@ -307,6 +311,13 @@ def actorList(request):
         actorName = request.POST.get("actorName")
         actors = models.Actor.objects.filter(actorName__contains=actorName).values()
         return render(request, 'login/actorList.html', {"result": actors})
+    if request.GET.get("type") == "orderBy":
+        if request.GET.get("style") == "date":
+            actors = models.Actor.objects.all().order_by("-actorAge").values()
+            return render(request, 'login/actorList.html', {"result": actors})
+        elif request.GET.get("style") == "name":
+            actors = models.Actor.objects.all().order_by("actorName").values()
+            return render(request, 'login/actorList.html', {"result": actors})
     actors = models.Actor.objects.all().values()
     for var in actors:
         print(var)
@@ -345,6 +356,13 @@ def directorList(request):
         directorName = request.POST.get("directorName")
         directors = models.Director.objects.filter(directorName__contains=directorName).values()
         return render(request, 'login/directorList.html', {"result": directors})
+    if request.GET.get("type") == "orderBy":
+        if request.GET.get("style") == "date":
+            directors = models.Director.objects.all().order_by("-directorAge").values()
+            return render(request, 'login/directorList.html', {"result": directors})
+        elif request.GET.get("style") == "name":
+            directors = models.Director.objects.all().order_by("directorName").values()
+            return render(request, 'login/directorList.html', {"result": directors})
     directors = models.Director.objects.all().values()
     return render(request, 'login/directorList.html', {"result": directors})
 
@@ -380,6 +398,10 @@ def companyList(request):
         companyName = request.POST.get("companyName")
         companys = models.Company.objects.filter(companyName__contains=companyName).values()
         return render(request, 'login/companyList.html', {"result": companys})
+    if request.GET.get("type") == "orderBy":
+        if request.GET.get("style") == "name":
+            companies = models.Company.objects.all().order_by("companyName").values()
+            return render(request, 'login/companyList.html', {"result": companies})
     companys = models.Company.objects.all().values()
     return render(request, 'login/companyList.html', {"result": companys})
 
