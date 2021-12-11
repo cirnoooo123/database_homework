@@ -22,6 +22,12 @@ class WebUser(models.Model):
     loveMovies = models.ManyToManyField("Movie")
     loveDirectors = models.ManyToManyField("Director")
     loveActors = models.ManyToManyField("Actor")
+    name = models.CharField(max_length=30)
+    age = models.IntegerField()
+    teleNum = models.CharField(max_length=20)
+    email = models.EmailField(max_length=40)
+    job = models.CharField(max_length=30)
+
 
 
 class Movie(models.Model):
