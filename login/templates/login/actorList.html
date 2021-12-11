@@ -77,27 +77,23 @@
                 <h1>演员列表</h1>
                 <form action="" method="post">
                     {% csrf_token %}
-                    <div class="inp">
-                        <input  size="22" maxlength="60" placeholder="搜索电影相关讯息" value autocomplete="off" type="text" name="actorName"/>
-                    </div>
-                    <div class="inp-btn">
-                        <input type="submit"  value=""/>
-{#                          <el-button icon="el-icon-search" circle></el-button>#}
-                    </div>
+                    <input size="60" maxlength="80" class="mytxt" type="text" placeholder="搜索电影相关资讯" name="actorName"
+                           id="reviewGrade"/>
+                      <el-button icon="el-icon-search" type="info" onclick="this.form.submit()" circle></el-button>
                 </form>
-{#                <table>#}
-                    <div class="list">
-                        {% for line in result %}
+                {#                <table>#}
+                <div class="list">
+                    {% for line in result %}
 
-                            <a class="item" href="/login/actor/?id={{ line.id }}">
-                                <div class="cover-wp">
-                                    <img src="{{ line.actorPhoto }}" alt="a photo">
-                                </div>
-                                <p>{{ line.actorName }}</p>
-                            </a>
+                        <a class="item" href="/login/actor/?id={{ line.id }}">
+                            <div class="cover-wp">
+                                <img src="{{ line.actorPhoto }}" alt="a photo">
+                            </div>
+                            <p>{{ line.actorName }}</p>
+                        </a>
 
-                        {% endfor %}
-                    </div>
+                    {% endfor %}
+                </div>
 
             </el-main>
         </el-container>

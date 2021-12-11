@@ -77,12 +77,9 @@
                 <h1>导演列表</h1>
                 <form action="" method="post">
                     {% csrf_token %}
-                    <div class="inp">
-                        <input  size="22" maxlength="60" placeholder="搜索电影相关讯息" value autocomplete="off" type="text" name="directorName"/>
-                    </div>
-                    <div class="inp-btn">
-                        <input type="submit"  value=""/>
-                    </div>
+                    <input size="60" maxlength="80" class="mytxt" type="text" placeholder="搜索电影相关资讯" name="directorName"
+                           id="reviewGrade"/>
+                      <el-button icon="el-icon-search" type="info" onclick="this.form.submit()" circle></el-button>
                 </form>
                 <div class="list">
                     {% for line in result %}
