@@ -420,6 +420,11 @@ textarea {
 
 .special-a{
     margin-top: 0px;
+    vertical-align: middle;
+}
+
+.typo .toph {
+    margin-top: 0.8em;
 }
 
 

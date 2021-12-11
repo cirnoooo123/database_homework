@@ -12,12 +12,12 @@
 <body>
 
 
-    <script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
+<script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
+<script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
 <div id="app" class="typo typo-selection">
-  <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
+    <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
-              <el-header>
+        <el-header>
             <div class="head-right">
                 <span>欢迎  {{ request.session.userName }}  !</span>
                 /
@@ -95,15 +95,18 @@
                 </el-row>
             </el-aside>
             <el-main>
-            <a class="label" href="/login/companyList/?type=orderBy&style=name">
-                    <el-tag effect="dark">名字排序</el-tag>
+
+                <h5 class="toph">排序方式：</h5>
+                <a class="label" href="/login/companyList/?type=orderBy&style=name">
+                    <el-tag type="warning" effect="dark">名字排序</el-tag>
                 </a>
+
                 <h1>公司列表</h1>
                 <form action="" method="post">
                     {% csrf_token %}
-                    <input size="60" maxlength="80" class="mytxt" type="text" placeholder="搜索电影相关资讯" name="companyName"
+                    <input size="35" maxlength="80" class="mytxt" type="text" placeholder="搜索电影相关资讯" name="companyName"
                            id="reviewGrade"/>
-                      <el-button icon="el-icon-search" type="info" onclick="this.form.submit()" circle></el-button>
+                    <el-button icon="el-icon-search" type="info" onclick="this.form.submit()" circle></el-button>
                 </form>
                 <table>
                     <thead>
