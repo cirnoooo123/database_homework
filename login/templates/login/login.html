@@ -15,18 +15,28 @@
     <div class="container">
             <div class="col">
               <form class="form-login" action="" method="post">
-                  {% if message %}
+                  {% if login_form.captcha.errors %}
+                    <div class="alert alert-warning">{{ login_form.captcha.errors }}</div>
+                {% elif message %}
                     <div class="alert alert-warning">{{ message }}</div>
-                  {% endif %}
+                {% endif %}
+
                   {% csrf_token %}
                   <h3 class="text-center">欢迎登录</h3>
+
                   <div class="form-group">
-                    <label for="id_username">用户名：</label>
-                    <input type="text" name='username' class="form-control" id="id_username" placeholder="Username" autofocus required>
+                    {{ login_form.username.label_tag }}
+                    {{ login_form.username}}
                   </div>
+
                   <div class="form-group">
-                    <label for="id_password">密码：</label>
-                    <input type="password" name='password' class="form-control" id="id_password" placeholder="Password" required>
+                    {{ login_form.password.label_tag }}
+                    {{ login_form.password }}
+                  </div>
+
+                  <div class="form-group">
+                    {{ login_form.captcha.label_tag }}
+                    {{ login_form.captcha }}
                   </div>
                 <div>
                   <a href="/login/register/" class="text-success "><ins>新用户注册</ins></a>
