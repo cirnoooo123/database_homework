@@ -24,7 +24,17 @@
 
     <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
+        <form action="/login/allList/" method="post">
+                    {% csrf_token %}
+                    <div class="inp">
+                        <input  size="22" maxlength="60" placeholder="搜索相关讯息" value autocomplete="off" type="text" name="name"/>
+                    </div>
+                    <div class="inp-btn">
+                        <input type="submit"  value=""/>
+                    </div>
+                </form>
         <el-header>
+
             <span class="el-dropdown-link">
                 <a href="/login/userPage/">我的订阅
                     <i class="el-icon-arrow-down el-icon--right"></i>

@@ -6,24 +6,29 @@
     <link rel="stylesheet" href="https://www.unpkg.com/element-ui@2.15.6/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="{% static 'login/css/login.css' %}">
     <link rel="stylesheet" href="{% static 'login/css/typo.css' %}">
-    <title>首页</title>
+    <title>导演列表</title>
 </head>
 
 <body>
 
 
-<script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
-<script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
+    <script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
 <div id="app" class="typo typo-selection">
-    <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
+  <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
-        <el-header>
+              <el-header>
                 <span>
-                    <a href="/login/">返回主页
+                    <a href="/login">返回主页
                     <i class="el-icon-back el-icon--right"></i>
                     </a>
                 </span>
-
+            /
+            <span class="el-dropdown-link">
+                <a href="/login/userPage/">我的订阅
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                </a>
+            </span>
             /
             <span>欢迎  {{ request.session.userName }}  !</span>
             /
@@ -69,27 +74,22 @@
                 </el-row>
             </el-aside>
             <el-main>
+                <h1>电影列表</h1>
+                <div class="list">
+                    {% for line in movies %}
 
-                <div>
-                    <h1>喜欢的电影</h1>
-                    <div class="list">
-                        {% for line in loveMovies %}
+                        <a class="item" href="/login/movie/?id={{ line.id }}">
+                            <div class="cover-wp">
+                                <img src="{{ line.moviePhoto }}" alt="a photo">
+                            </div>
+                            <p>{{ line.movieName }}</p>
+                        </a>
 
-                            <a class="item" href="/login/movie/?id={{ line.id }}">
-                                <div class="cover-wp">
-                                    <img src="{{ line.moviePhoto }}" alt="a photo">
-                                </div>
-                                <p>{{ line.movieName }}</p>
-                            </a>
-
-                        {% endfor %}
-                    </div>
-
+                    {% endfor %}
                 </div>
-                <div>
-                    <h1>喜欢的演员</h1>
+                <h1>演员列表</h1>
                     <div class="list">
-                        {% for line in loveActors %}
+                        {% for line in actors %}
 
                             <a class="item" href="/login/actor/?id={{ line.id }}">
                                 <div class="cover-wp">
@@ -101,56 +101,39 @@
                         {% endfor %}
                     </div>
 
+                <h1>导演列表</h1>
+                <div class="list">
+                    {% for line in directors %}
+                <a class="item" href="/login/director/?id={{ line.id }}">
+                <div class="cover-wp">
+                    <img src="{{ line.directorPhoto }}" alt="a photo">
                 </div>
-                <div>
-                    <h1>喜欢的导演</h1>
-                    <div class="list">
-                        {% for line in loveDirectors %}
+                <p>{{ line.directorName }}</p>
+                </a>
 
-                            <a class="item" href="/login/director/?id={{ line.id }}">
-                                <div class="cover-wp">
-                                    <img src="{{ line.directorPhoto }}" alt="a photo">
-                                </div>
-                                <p>{{ line.directorName }}</p>
-                            </a>
-
-                        {% endfor %}
-                    </div>
-
+                    {% endfor %}
                 </div>
-
-                <h1>我的影评</h1>
-                {% for line in reviews %}
-                    <div class="comment-item">
-                    <h3>{{ line.reviewedMovie_name }}</h3>
-                        <div class="comment">
-                            <p>
-                                    <span class="comment-info">
-                               {{ line.reviewedAuthor_id }}
-                                <span>看过/打分：</span>
-                               {{ line.reviewGrade }}
-                                <span class="comment-time">
-                                   {{ line.reviewDate }}
-                                </span>
-                                 </span>
-                            </p>
-                            <p class="comment-content">
-                                    <span class="short">
-                                        {{ line.reviewString }}
-                                    </span>
-                            </p>
-                            <p>
-                                <a href="/login/movie/?id={{ line.reviewedMovie_id }}">
-                                    <ins>查看电影详情</ins>
+            <h1>公司列表</h1>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>公司名</th>
+                        <th>公司所在地</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for line in companies %}
+                        <tr>
+                            <td>
+                                <a href="/login/company/?id={{ line.id }}">
+                                    <ins>{{ line.companyName }}</ins>
                                 </a>
-                                <a href="/login/userPage/?type=deleteReview&reviewId={{ line.id }}">
-                                    <ins>删除</ins>
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-
-                {% endfor %}
+                            </td>
+                            <td>{{ line.companyAddr }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </el-main>
         </el-container>
     </el-container>
@@ -159,5 +142,7 @@
 <script>
     new Vue().$mount('#app')
 </script>
+
+
 </body>
 </html>

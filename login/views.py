@@ -27,7 +27,7 @@ def login(request):
             except:
                 message = '用户不存在！'
                 return render(request, 'login/login.html', locals())
-            if check_password(password,user.upwd):
+            if check_password(password, user.upwd):
                 request.session['isLogin'] = True
                 request.session['userName'] = username
                 return redirect('/login/')
@@ -198,7 +198,6 @@ def recMovie(name):
 
 
 def index(request):
-
     if request.session.get("userName") is None:
         return redirect("/login/login/")
     result = {}
@@ -404,7 +403,15 @@ def userPage(request):
     movies = user.loveMovies.all().values()
     actors = user.loveActors.all().values()
     directors = user.loveDirectors.all().values()
-    reviews = user.review_set.all().values()
+    reviews1 = user.review_set.all().values()
+    reviews = []
+
+    for var in list(reviews1):
+        temp = {"reviewedMovie_id": var["reviewedMovie_id"], "reviewGrade": var["reviewGrade"],
+                "reviewString": var["reviewString"], "reviewDate": var["reviewDate"],
+                "reviewedUser_id": var["reviewedAuthor_id"]}
+        temp["reviewedMovie_name"] = models.Movie.objects.get(id=temp["reviewedMovie_id"]).movieName
+        reviews.append(temp)
 
     result["loveMovies"] = movies
     result["loveActors"] = actors
@@ -412,3 +419,21 @@ def userPage(request):
     result["reviews"] = reviews
 
     return render(request, 'login/userPage.html', result)
+
+
+def allList(request):
+    if request.session.get("userName") is None:
+        return redirect("/login/login/")
+    if request.method == 'POST':
+        result = {}
+        name = request.POST.get("name")
+        movies = models.Movie.objects.filter(movieName__contains=name).values()
+        actors = models.Actor.objects.filter(actorName__contains=name).values()
+        directors = models.Director.objects.filter(directorName__contains=name).values()
+        companies = models.Company.objects.filter(companyName__contains=name).values()
+        result["movies"] = movies
+        result["actors"] = actors
+        result["directors"] = directors
+        result["companies"] = companies
+        return render(request, 'login/allList.html', result)
+    return render(request, 'login/index.html')
