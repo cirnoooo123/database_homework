@@ -411,7 +411,7 @@ def userPage(request):
     for var in list(reviews1):
         temp = {"reviewedMovie_id": var["reviewedMovie_id"], "reviewGrade": var["reviewGrade"],
                 "reviewString": var["reviewString"], "reviewDate": var["reviewDate"],
-                "reviewedUser_id": var["reviewedAuthor_id"]}
+                "reviewedUser_id": var["reviewedAuthor_id"], "id": var["id"]}
         temp["reviewedMovie_name"] = models.Movie.objects.get(id=temp["reviewedMovie_id"]).movieName
         reviews.append(temp)
 
