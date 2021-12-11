@@ -80,8 +80,8 @@
                     </a>
                 {% endfor %}
                 <a class="label" href="/login/movieList/?type=orderBy&style=date">
-                        <el-tag effect="dark">新到旧</el-tag>
-                    </a>
+                    <el-tag effect="dark">新到旧</el-tag>
+                </a>
                 <h1>电影列表</h1>
                 <form action="" method="post">
                     {% csrf_token %}
@@ -93,6 +93,7 @@
                         <input type="submit" value=""/>
                     </div>
                 </form>
+
                 <div class="list">
                     {% for line in result %}
 
@@ -104,7 +105,13 @@
                         </a>
 
                     {% endfor %}
+{#                    <el-pagination#}
+{#                            background#}
+{#                            layout="prev, pager, next"#}
+{#                            :total="1000">#}
+{#                    </el-pagination>#}
                 </div>
+
                 {% comment %}<table>
                     <thead>
                     <tr>
