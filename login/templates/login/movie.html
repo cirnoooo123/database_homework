@@ -125,23 +125,27 @@
                     </a>
                 </div>
                 <div>
+                    <h1>影评天地</h1>
                     <div class="commentin">
-                        {% if message %}
+                        {% comment %}                        {% if message %}
                             <div class="alert alert-warning">{{ message }}</div>
-                        {% endif %}
-                        <form action="" method="post">
+                        {% endif %}{% endcomment %}
+                        <form id="formid" action="" method="post">
                             {% csrf_token %}
 
                             <label for="reviewGrade"></label>
-                            <input type="number" placeholder="请打分，分数为0-5" name="reviewGrade"
-                                   id="reviewGrade"></el-input>
+                            <input class="mytxt" type="number" placeholder="请打分，分数为0-5" name="reviewGrade"
+                                   id="reviewGrade"/>
                             <div style="margin-top: 15px;">
                                 <label for="reviewString"></label>
-                                <input type="text" placeholder="请输入评论内容" name="reviewString" id="reviewString"/>
+                                <textarea class="mytxt" type="text" placeholder="请输入评论内容" name="reviewString"
+                                          id="reviewString"></textarea>
                             </div>
                             <div style="margin-top: 15px;">
-                                <input type="submit" value="提交"/>
-                                {#                                <el-button type="primary">发布<i class="el-icon-upload el-icon--right"></i></el-button>#}
+{#                                <input type="button" class="el-button el-button--primary" onclick="this.form.submit()" value="提交"/>#}
+                                <el-button type="primary" onclick="this.form.submit()">发布
+                                    <i class="el-icon-upload el-icon--right"></i>
+                                </el-button>
                             </div>
                         </form>
                     </div>
@@ -176,7 +180,7 @@
 
 
 <script>
-    var Main= {
+    var Main = {
         methods: {
             success() {
                 alert("你已成功订阅")
@@ -187,14 +191,18 @@
             }
         }
     }
-        var Ctor=Vue.extend(Main)
-        new Ctor().$mount('#app')
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
 </script>
 
 <script>
     {% if message %}
         alert("{{ message }}");
     {% endif %}
+
+{% comment %}function submitup(){
+    document.getElementById("formid").submit();
+}{% endcomment %}
 </script>
 
 
