@@ -51,7 +51,7 @@
                     <img class="head-middle" src="{% static "login/image/head3.jpg" %}"/>
                 </a>
                 {#                <img class="head-middle" src="{% static "login/image/head3.jpg" %}"/>#}
-                <input size="40" maxlength="60" class="mytxt" type="text" placeholder="搜索电影、演员、导演、影人" name="name"
+                <input size="40" maxlength="60" class="mytxt" type="text" placeholder="搜索电影、演员、导演、公司" name="name"
                        id="reviewGrade"/>
                 <el-button icon="el-icon-search" onclick="this.form.submit()" circle></el-button>
             </form>
@@ -155,7 +155,7 @@
                             {% csrf_token %}
 
                             <label for="reviewGrade"></label>
-                            <input class="mytxt" type="number" placeholder="请打分，分数为0-5" name="reviewGrade"
+                            <input class="mytxt" type="number" placeholder="请打分，分数为1-5" name="reviewGrade"
                                    id="reviewGrade"/>
                             <div style="margin-top: 15px;">
                                 <label for="reviewString"></label>
