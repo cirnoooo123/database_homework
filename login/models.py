@@ -29,7 +29,6 @@ class WebUser(models.Model):
     job = models.CharField(max_length=30)
 
 
-
 class Movie(models.Model):
     movieName = models.CharField(max_length=100)
     movieIntroduction = models.CharField(max_length=1000, default="无")
@@ -67,4 +66,3 @@ class Review(models.Model):
     reviewDate = models.DateField(auto_now=True)
     reviewedAuthor = models.ForeignKey("WebUser", on_delete=models.CASCADE, null=True)
     reviewedMovie = models.ForeignKey("Movie", on_delete=models.CASCADE, null=True)
-

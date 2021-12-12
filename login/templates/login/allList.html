@@ -12,12 +12,12 @@
 <body>
 
 
-    <script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
-    <script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
+<script src="https://www.unpkg.com/vue@2.6.14/dist/vue.js"></script>
+<script src="https://www.unpkg.com/element-ui@2.15.6/lib/index.js"></script>
 <div id="app" class="typo typo-selection">
-  <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
+    <el-backtop :bottom="100" :visibility-height="50"></el-backtop>
     <el-container>
-              <el-header>
+        <el-header>
             <div class="head-right">
                 <span>欢迎  {{ request.session.userName }}  !</span>
                 /
@@ -109,32 +109,32 @@
                     {% endfor %}
                 </div>
                 <h1>演员列表</h1>
-                    <div class="list">
-                        {% for line in actors %}
+                <div class="list">
+                    {% for line in actors %}
 
-                            <a class="item" href="/login/actor/?id={{ line.id }}">
-                                <div class="cover-wp">
-                                    <img src="{{ line.actorPhoto }}" alt="a photo">
-                                </div>
-                                <p>{{ line.actorName }}</p>
-                            </a>
+                        <a class="item" href="/login/actor/?id={{ line.id }}">
+                            <div class="cover-wp">
+                                <img src="{{ line.actorPhoto }}" alt="a photo">
+                            </div>
+                            <p>{{ line.actorName }}</p>
+                        </a>
 
-                        {% endfor %}
-                    </div>
+                    {% endfor %}
+                </div>
 
                 <h1>导演列表</h1>
                 <div class="list">
                     {% for line in directors %}
-                <a class="item" href="/login/director/?id={{ line.id }}">
-                <div class="cover-wp">
-                    <img src="{{ line.directorPhoto }}" alt="a photo">
-                </div>
-                <p>{{ line.directorName }}</p>
-                </a>
+                        <a class="item" href="/login/director/?id={{ line.id }}">
+                            <div class="cover-wp">
+                                <img src="{{ line.directorPhoto }}" alt="a photo">
+                            </div>
+                            <p>{{ line.directorName }}</p>
+                        </a>
 
                     {% endfor %}
                 </div>
-            <h1>公司列表</h1>
+                <h1>公司列表</h1>
                 <table>
                     <thead>
                     <tr>

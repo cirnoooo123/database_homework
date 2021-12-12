@@ -1,11 +1,11 @@
 import random
 
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.shortcuts import redirect
-from . import models
-from . import forms
 from django.contrib.auth.hashers import make_password, check_password
+from django.shortcuts import redirect
+from django.shortcuts import render
+
+from . import forms
+from . import models
 
 
 # Create your views here.
