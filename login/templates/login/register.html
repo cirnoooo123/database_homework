@@ -32,29 +32,33 @@
                 <label for="id_password">请重复输入密码：</label>
                 <input type="password" name='password2' class="form-control" id="id_password">
             </div>
-        <div class="form-group">
+            <div class="form-group">
                 <label for="id_name">姓名：</label>
                 <input type="text" name='name' class="form-control" id="id_name">
             </div>
-        <div class="form-group">
+            <div class="form-group">
                 <label for="id_age">年龄：</label>
-                <input type="text" name='age' class="form-control" id="id_age">
+                <input type="number" name='age' class="form-control" id="id_age">
             </div>
-        <div class="form-group">
+            <div class="form-group">
                 <label for="id_teleNum">电话号码：</label>
-                <input type="text" name='teleNum' class="form-control" id="id_teleNum">
+                <input type="tel" name='teleNum' class="form-control" id="id_teleNum">
             </div>
-        <div class="form-group">
+            <div class="form-group">
                 <label for="id_email">邮箱地址：</label>
-                <input type="text" name='email' class="form-control" id="id_email">
+                <input type="email" name='email' class="form-control" id="id_email">
             </div>
-        <div class="form-group">
+            <div class="form-group">
                 <label for="id_job">工作：</label>
                 <input type="text" name='job' class="form-control" id="id_job">
             </div>
             <div>
-                <a href="/login/login/" class="text-success ">
-                    <ins>返回登录界面</ins>
+                {#                <a href="/login/login/" class="text-success ">#}
+                {#                    <ins>返回登录界面</ins>#}
+                {#                </a>#}
+                <a href="/login/login/"
+                   class="text-success special-a">
+                    <input type="button" class="btn btn-primary float-left" value="返回登录页面">
                 </a>
                 <button type="submit" class="btn btn-primary float-right">注册</button>
             </div>
